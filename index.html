@@ -246,7 +246,70 @@
                 font-size: 8pt;
             }
         }
-    </style>
+    
+html { scroll-behavior: smooth; }
+.question-title { color: #8e44ad !important; font-weight: 700; }
+
+/* ---------------- Responsive Enhancements ---------------- */
+.container {
+  max-width: 1100px;
+  padding: 20px;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+code {
+  word-break: break-word;
+}
+
+
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 1024px) {
+  
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  .question-title {
+    font-size: 1.15em;
+  }
+
+  .question {
+    padding-left: 15px;
+  }
+
+  .back-to-toc {
+    font-size: 0.8em;
+    padding: 6px 10px;
+  }
+}
+
+/* -------- TOC Layout Control -------- */
+#toc ul {
+  columns: 1;
+}
+
+@media (min-width: 1024px) {
+  #toc ul {
+    columns: 2;
+  }
+}
+</style>
 </head>
 <body>
     <div class="container">
@@ -255,8 +318,88 @@
             <p class="subtitle">51 Comprehensive Questions with Detailed Answers</p>
         </header>
 
-        <div class="question">
-            <div class="question-number">Question 1</div>
+<div id="toc" class="toc-container">
+  <h2>📘 Contents</h2>
+  <ul>
+    <li><a href="#q1">Q1: Write a query to get how much compute hours consumed overall and also how much compute hrs used for each day</a></li>
+<li><a href="#q2">Q2: Snowflake Architecture</a></li>
+<li><a href="#q3">Q3: Time-Travel with scenarios like offset, query_id and timestamp</a></li>
+<li><a href="#q4">Q4: Optimize the query performance and how you do it</a></li>
+<li><a href="#q5">Q5: What is partition and what is micro-partitions</a></li>
+<li><a href="#q6">Q6: SCD Scenarios (SCD-0, SCD-1, SCD-2, SCD-3, SCD-4)</a></li>
+<li><a href="#q7">Q7: How you ingested JSON data into Snowflake, what steps you perform</a></li>
+<li><a href="#q8">Q8: If the file size is 50GB, how you will ingest the data</a></li>
+<li><a href="#q9">Q9: Internal and External stages in Snowflake - Uses for each</a></li>
+<li><a href="#q10">Q10: How you schedule a data pipeline in Snowflake</a></li>
+<li><a href="#q11">Q11: Stored Procedure</a></li>
+<li><a href="#q12">Q12: User Defined Functions (UDF)</a></li>
+<li><a href="#q13">Q13: What is Git</a></li>
+<li><a href="#q14">Q14: What is QUALIFY in Snowflake - Why it's used</a></li>
+<li><a href="#q15">Q15: Benefits of Snowflake</a></li>
+<li><a href="#q16">Q16: What is CDC (Change Data Capture) - Is it tool or term</a></li>
+<li><a href="#q17">Q17: Python questions - List and Tuple</a></li>
+<li><a href="#q18">Q18: AVRO, Parquet, ORC file formats - Uses</a></li>
+<li><a href="#q19">Q19: Difference between CTE and Temp table - Where to use</a></li>
+<li><a href="#q20">Q20: Difference between Transient and Dynamic and Dynamic Transient tables</a></li>
+<li><a href="#q21">Q21: How you will handle schema changes in the downstream</a></li>
+<li><a href="#q22">Q22: Ephemeral vs Permanent tables</a></li>
+<li><a href="#q23">Q23: How to implement CDC without ETL tools in Snowflake</a></li>
+<li><a href="#q24">Q24: What is DBT and uses - Execution plan</a></li>
+<li><a href="#q25">Q25: Why continuous data load used - Use cases</a></li>
+<li><a href="#q26">Q26: Explain end-to-end data pipeline - What are the logics you followed</a></li>
+<li><a href="#q27">Q27: Why implement CDC instead of other approaches - Use case</a></li>
+<li><a href="#q28">Q28: Snowflake Tasks - Troubleshooting failed queries and performance improvement</a></li>
+<li><a href="#q29">Q29: What is Zero Copy clone - Uses</a></li>
+<li><a href="#q30">Q30: Convert timestamp from one timezone to another</a></li>
+<li><a href="#q31">Q31: Clustering Keys in Snowflake</a></li>
+<li><a href="#q32">Q32: How to monitor Snowflake performance</a></li>
+<li><a href="#q33">Q33: Attacama and Collibra - Uses and Differences</a></li>
+<li><a href="#q34">Q34: How to optimize long running queries - How to reduce time</a></li>
+<li><a href="#q35">Q35: What is Snowpipe - How to integrate using AWS S3, SNS, SQS, Task, Stored Proc</a></li>
+<li><a href="#q36">Q36: Max Salary for each department and 4th max salary for each department</a></li>
+<li><a href="#q37">Q37: Swap the gender value for a table - Male to Female, Female to Male</a></li>
+<li><a href="#q38">Q38: DBT Project Architecture</a></li>
+<li><a href="#q39">Q39: Difference between UPSERT and MERGE</a></li>
+<li><a href="#q40">Q40: Data Masking and Masking Policy</a></li>
+<li><a href="#q41">Q41: Difference between Hashing and Encryption</a></li>
+<li><a href="#q42">Q42: Snowflake storage integration with AWS S3</a></li>
+<li><a href="#q43">Q43: What is DBT and what problem does it solve in modern data stack</a></li>
+<li><a href="#q44">Q44: Core components of a DBT project: Models, Tests, Seeds</a></li>
+<li><a href="#q45">Q45: Materializations in DBT - Four default types</a></li>
+<li><a href="#q46">Q46: Managing dependencies and referencing models in DBT</a></li>
+<li><a href="#q47">Q47: What is Jinja in DBT - Simple example</a></li>
+<li><a href="#q48">Q48: Data Governance best practices</a></li>
+<li><a href="#q49">Q49: Data quality testing strategies</a></li>
+<li><a href="#q50">Q50: Building a modern data stack - Technology selection</a></li>
+<li><a href="#q51">Q51: Future trends in data engineering</a></li>
+<li><a href="#q52">Q52: Explain your end-to-end data pipeline (tools + flow)</a></li>
+<li><a href="#q53">Q53: How do you use Python inside Airflow for orchestration and failure alerts?</a></li>
+<li><a href="#q54">Q54: How do you implement SCD Type 2 in dbt?</a></li>
+<li><a href="#q55">Q55: How does dbt snapshot handle deletes?</a></li>
+<li><a href="#q56">Q56: When and why do you use dbt seeds?</a></li>
+<li><a href="#q57">Q57: SQL Challenge – Orders and Payments</a></li>
+<li><a href="#q58">Q58: dbt Materializations — Syntax &amp; When to Use</a></li>
+<li><a href="#q59">Q59: dbt Snapshots — Syntax &amp; Purpose</a></li>
+<li><a href="#q60">Q60: dbt YAML Files — Syntax, Indentation &amp; Purpose</a></li>
+<li><a href="#q61">Q61: Tests in YAML — Built-in &amp; Relationships</a></li>
+<li><a href="#q62">Q62: Materialization Configuration via dbt_project.yml</a></li>
+<li><a href="#q63">Q63: Quick Interview Cheat Table &amp; Power Lines</a></li>
+<li><a href="#q64">Q64: Advanced Incremental Strategies – MERGE vs APPEND</a></li>
+<li><a href="#q65">Q65: Custom dbt Tests – Beyond Built-ins</a></li>
+<li><a href="#q66">Q66: Enterprise-Grade dbt Folder Structure</a></li>
+<li><a href="#q67">Q67: Production dbt Failures & Root Causes (What Seniors Face)</a></li>
+<li><a href="#q68">Q68: Senior-Level dbt Cheat Sheet & Interview Power Lines</a></li>
+<li><a href="#q69">Q69: Advanced dbt Macros & Jinja Templating Patterns</a></li>
+<li><a href="#q70">Q70: dbt Exposures & Metrics – Connecting to BI & Analytics</a></li>
+<li><a href="#q71">Q71: dbt on Snowflake: Performance Optimization & Run Config</a></li>
+<li><a href="#q72">Q72: Data Contracts & Dynamic Testing in dbt</a></li>
+<li><a href="#q73">Q73: CI/CD Workflows in dbt Cloud & Git-Driven Development</a></li>
+<li><a href="#q74">Q74: dbt Pre-Hooks & Post-Hooks – Advanced Execution Control</a></li>
+  </ul>
+</div>
+
+
+        <div class="question" id="q1">
             <div class="question-title">Write a query to get how much compute hours consumed overall and also how much compute hrs used for each day</div>
             <div class="answer">
                 <p>This requires interpreting the start and end events to calculate the duration. Assuming Date_timestamp is a DATETIME or TIMESTAMP column.</p>
@@ -295,11 +438,11 @@ ORDER BY Compute_Date;</pre>
                     <li><strong>ComputeDurations:</strong> Calculates the Duration_Seconds only for valid end events preceded by a start event</li>
                     <li><strong>Final SELECT:</strong> Sums durations to get Total and groups by date for Daily_Compute_Hours</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 2</div>
+        <div class="question" id="q2">
             <div class="question-title">Snowflake Architecture</div>
             <div class="answer">
                 <p>Snowflake's architecture is a unique multi-cluster shared data architecture. It separates compute and storage, allowing them to scale independently, and includes a cloud services layer for management.</p>
@@ -310,11 +453,11 @@ ORDER BY Compute_Date;</pre>
                     <li><strong>Cloud Services Layer:</strong> The brain of Snowflake, coordinating all activities including authentication, metadata management, query optimization, infrastructure management, and transaction management.</li>
                 </ul>
                 <p><strong>Analogy:</strong> Imagine a library where storage is the books on shelves, compute is the reading rooms, and cloud services is the librarian system managing everything.</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 3</div>
+        <div class="question" id="q3">
             <div class="question-title">Time-Travel with scenarios like offset, query_id and timestamp</div>
             <div class="answer">
                 <p>Snowflake's Time Travel feature allows you to query historical data that has been changed or deleted within a specified retention period (default 1 day, up to 90 days for Enterprise Edition).</p>
@@ -329,11 +472,11 @@ SELECT * FROM my_table AT (OFFSET => -300);</pre>
                 <p><strong>Using BEFORE (STATEMENT):</strong> Query data immediately before a specific DML statement executed.</p>
                 <pre>CREATE TABLE my_table_recovery AS
 SELECT * FROM my_table BEFORE (STATEMENT => '123abc456def');</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 4</div>
+        <div class="question" id="q4">
             <div class="question-title">Optimize the query performance and how you do it</div>
             <div class="answer">
                 <p><strong>Key Optimization Strategies:</strong></p>
@@ -346,11 +489,11 @@ SELECT * FROM my_table BEFORE (STATEMENT => '123abc456def');</pre>
                     <li><strong>Avoid Anti-Patterns:</strong> Don't use SELECT *, avoid correlated subqueries, eliminate unnecessary ORDER BY or DISTINCT.</li>
                     <li><strong>Monitor Query Profile:</strong> Use Snowflake's Query Profile to identify bottlenecks and optimize accordingly.</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 5</div>
+        <div class="question" id="q5">
             <div class="question-title">What is partition and what is micro-partitions</div>
             <div class="answer">
                 <p><strong>Partition (General Database Concept):</strong> A strategy to divide a large table into smaller, manageable pieces based on a specified column (e.g., date, region). Usually managed explicitly by the database administrator.</p>
@@ -362,11 +505,11 @@ SELECT * FROM my_table BEFORE (STATEMENT => '123abc456def');</pre>
                     <li>Query Pruning - metadata allows Snowflake to skip irrelevant micro-partitions</li>
                     <li>Clustering - you can define clustering keys to optimize physical co-location of data</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 6</div>
+        <div class="question" id="q6">
             <div class="question-title">SCD Scenarios (SCD-0, SCD-1, SCD-2, SCD-3, SCD-4)</div>
             <div class="answer">
                 <p><strong>SCD Type 0: Retain Original</strong> - No changes tracked. Dimension attribute value never changes.</p>
@@ -379,11 +522,11 @@ Result:
 - New row: Department: Marketing, StartDate: 2025-06-01, IsCurrent: TRUE</pre>
                 <p><strong>SCD Type 3: Add New Attribute</strong> - New column added for previous value. Partial history.</p>
                 <p><strong>SCD Type 4: Use History Table</strong> - Main table holds current (Type 1), separate history table stores all past versions (Type 2).</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 7</div>
+        <div class="question" id="q7">
             <div class="question-title">How you ingested JSON data into Snowflake, what steps you perform</div>
             <div class="answer">
                 <p><strong>Key Steps:</strong></p>
@@ -411,11 +554,11 @@ ON_ERROR = 'CONTINUE';</pre>
                     </li>
                     <li><strong>Query & Transform:</strong> Use VARIANT functions to extract and transform data</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 8</div>
+        <div class="question" id="q8">
             <div class="question-title">If the file size is 50GB, how you will ingest the data</div>
             <div class="answer">
                 <p><strong>For 50GB files, the approach is:</strong></p>
@@ -440,11 +583,11 @@ PURGE = TRUE;</pre>
                         </ul>
                     </li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 9</div>
+        <div class="question" id="q9">
             <div class="question-title">Internal and External stages in Snowflake - Uses for each</div>
             <div class="answer">
                 <p><strong>Internal Stages (Snowflake-managed Storage):</strong></p>
@@ -486,11 +629,11 @@ PURGE = TRUE;</pre>
                         <td>Large-scale automated</td>
                     </tr>
                 </table>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 10</div>
+        <div class="question" id="q10">
             <div class="question-title">How you schedule a data pipeline in Snowflake</div>
             <div class="answer">
                 <p><strong>Snowflake Tasks (Native):</strong></p>
@@ -515,11 +658,11 @@ CREATE TASK transform_data
 ALTER TASK load_raw_data RESUME;
 ALTER TASK transform_data RESUME;</pre>
                 <p><strong>External Orchestration Tools:</strong> Apache Airflow, AWS Step Functions, Azure Data Factory, Control-M, Autosys - for complex cross-platform pipelines.</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 11</div>
+        <div class="question" id="q11">
             <div class="question-title">Stored Procedure</div>
             <div class="answer">
                 <p>A Stored Procedure is a set of SQL statements and procedural logic compiled and stored in the database. It can be executed by calling its name with input parameters.</p>
@@ -549,11 +692,11 @@ BEGIN
     END IF;
 END;
 $$;</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 12</div>
+        <div class="question" id="q12">
             <div class="question-title">User Defined Functions (UDF)</div>
             <div class="answer">
                 <p>A User Defined Function is a custom function that performs specific operations, similar to built-in functions. UDFs encapsulate logic that can be reused within SQL queries.</p>
@@ -573,11 +716,11 @@ $$;
 SELECT order_id, calculate_net_sales(sales_amount, return_amount) AS net_sales
 FROM daily_transactions;</pre>
                 <p><strong>Languages Supported:</strong> SQL, JavaScript, Python, Java, Scala (via Snowpark)</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 13</div>
+        <div class="question" id="q13">
             <div class="question-title">What is Git</div>
             <div class="answer">
                 <p>Git is a free, open-source distributed version control system (DVCS) designed to handle projects of any size. It tracks changes in source code and other files during software development, enabling collaborative work and complete change history.</p>
@@ -602,11 +745,11 @@ git checkout main                             # Switch back to main
 git pull origin main                          # Get latest main
 git merge feature/new-analysis                # Merge feature branch</pre>
                 <p><strong>For Data Teams:</strong> Git is essential for version controlling DBT projects, SQL scripts, Python ETL code, and documentation. Enables code review, audit trails, and rollback capabilities</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 14</div>
+        <div class="question" id="q14">
             <div class="question-title">What is QUALIFY in Snowflake - Why it's used</div>
             <div class="answer">
                 <p>QUALIFY is a clause unique to Snowflake that filters results of window functions without needing to wrap queries in subqueries or CTEs.</p>
@@ -622,11 +765,11 @@ QUALIFY RANK() OVER (PARTITION BY department ORDER BY salary DESC) = 2;</pre>
 )
 SELECT * FROM EmployeeRank WHERE rnk = 2;</pre>
                 <p><strong>Benefits:</strong> Simplicity, readability, potential performance improvements, direct filtering on window function results</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 15</div>
+        <div class="question" id="q15">
             <div class="question-title">Benefits of Snowflake</div>
             <div class="answer">
                 <p><strong>Key Benefits:</strong></p>
@@ -643,11 +786,11 @@ SELECT * FROM EmployeeRank WHERE rnk = 2;</pre>
                     <li><strong>Ecosystem Integration:</strong> Native connectors for Tableau, Power BI, Looker. DBT integration, Spark through connectors, Python/Pandas via snowpark_python</li>
                 </ul>
                 <p><strong>Cost Efficiency Example:</strong> Traditional data warehouse requires expensive hardware, undergoes periods of low utilization (pay for unused capacity). Snowflake: suspend warehouse when not used, pay only for storage. Scale up for batch jobs, down immediately after</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 16</div>
+        <div class="question" id="q16">
             <div class="question-title">What is CDC (Change Data Capture) - Is it tool or term</div>
             <div class="answer">
                 <p>CDC is primarily a <strong>term and technique</strong> (not a single tool). It identifies and captures changes (INSERT, UPDATE, DELETE) made to data in a source database and delivers those changes to a target system efficiently instead of reprocessing entire datasets.</p>
@@ -670,11 +813,11 @@ COPY INTO warehouse_sales FROM change_stream  -- Only 1GB changed
 -- Near real-time data availability</pre>
                 <p><strong>Popular CDC Tools:</strong> Qlik Replicate (log-based), Fivetran (managed CDC), Debezium (Kafka-based open source), Oracle GoldenGate (enterprise), AWS DMS, Apache Hudi/Iceberg (data lake CDC)</p>
                 <p><strong>Real Use Cases:</strong> Real-time analytics dashboards, microservices data synchronization, database migration with zero downtime, maintaining dimensional data in data warehouse</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 17</div>
+        <div class="question" id="q17">
             <div class="question-title">Python questions - List and Tuple</div>
             <div class="answer">
                 <p><strong>List []: Mutable (changeable)</strong> - ordered collection that can be modified after creation</p>
@@ -753,11 +896,11 @@ print(len(my_tuple))          # Length</pre>
                     </tr>
                 </table>
                 <p><strong>In Data Engineering:</strong> Tuples used for immutable data records, fixed field orders. Lists used for accumulating/processing data. DBT source definitions, data lineage metadata often use tuples</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 18</div>
+        <div class="question" id="q18">
             <div class="question-title">AVRO, Parquet, ORC file formats - Uses</div>
             <div class="answer">
                 <p><strong>AVRO (Apache Avro):</strong> Row-oriented data serialization format with self-describing schema</p>
@@ -848,11 +991,11 @@ print(len(my_tuple))          # Length</pre>
                     </tr>
                 </table>
                 <p><strong>Recommendation for Modern Data Stack:</strong> Use Parquet for data lakes (S3/ADLS); Use Avro for streaming pipelines and CDC; ORC if using Hadoop ecosystem</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 19</div>
+        <div class="question" id="q19">
             <div class="question-title">Difference between CTE and Temp table - Where to use</div>
             <div class="answer">
                 <p><strong>CTE (Common Table Expression) - WITH Clause:</strong> Temporary named result set defined within a single query. Often called "WITH clause" or subquery alternative</p>
@@ -954,11 +1097,11 @@ SELECT * FROM top_customers;
                     <li>Multi-step ETL processes in stored procedures</li>
                     <li>Needing to add indexes or optimize for specific access patterns</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 20</div>
+        <div class="question" id="q20">
             <div class="question-title">Difference between Transient and Dynamic and Dynamic Transient tables</div>
             <div class="answer">
                 <p><strong>TRANSIENT Table:</strong> Designed specifically for temporary data that doesn't require long-term protection</p>
@@ -987,11 +1130,11 @@ WHERE processing_complete = TRUE;
                     <li><strong>Project-specific Naming:</strong> Custom conventions for different use cases</li>
                 </ul>
                 <p>In production, most tables are either <strong>Permanent</strong> (for analytics) or <strong>Transient</strong> (for staging). See Question 22 for Ephemeral/Temporary tables comparison.</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 21</div>
+        <div class="question" id="q21">
             <div class="question-title">How you will handle schema changes in the downstream</div>
             <div class="answer">
                 <p><strong>Strategies for Handling Schema Changes:</strong></p>
@@ -1013,11 +1156,11 @@ CREATE VIEW v_customer AS SELECT customer_id, primary_contact_email AS email FRO
                     <li><strong>Impact Analysis & Testing:</strong> Understand dependencies, test in dev/test before prod</li>
                     <li><strong>Graceful Degradation:</strong> Implement logic that handles missing columns gracefully</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 22</div>
+        <div class="question" id="q22">
             <div class="question-title">Ephemeral vs Permanent tables</div>
             <div class="answer">
                 <p><strong>Permanent Table (Default):</strong> Standard table type with full data durability</p>
@@ -1063,11 +1206,11 @@ CREATE VIEW v_customer AS SELECT customer_id, primary_contact_email AS email FRO
                         <td>Lowest</td>
                     </tr>
                 </table>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 23</div>
+        <div class="question" id="q23">
             <div class="question-title">How to implement CDC without ETL tools in Snowflake</div>
             <div class="answer">
                 <p><strong>Strategy 1: Timestamp-Based CDC</strong></p>
@@ -1095,11 +1238,11 @@ ON t.id = s.id
 WHEN MATCHED AND s.METADATA$ACTION='DELETE' THEN DELETE
 WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                 <p><strong>Benefits of Streams:</strong> Exactly-once processing, captures all DML, low performance impact</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 24</div>
+        <div class="question" id="q24">
             <div class="question-title">What is DBT and uses - Execution plan</div>
             <div class="answer">
                 <p>DBT (Data Build Tool) is an open-source framework that enables data analysts to transform data in their warehouse using SQL and software engineering best practices. It focuses on the T in ELT.</p>
@@ -1122,11 +1265,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                     <li><strong>SQL Generation & Execution:</strong> Generate SQL, execute in warehouse in correct order</li>
                     <li><strong>Post-Run Actions:</strong> Run tests, generate documentation</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 25</div>
+        <div class="question" id="q25">
             <div class="question-title">Why continuous data load used - Use cases</div>
             <div class="answer">
                 <p>Continuous data loading moves data as soon as it becomes available, providing near real-time insights instead of batch windows.</p>
@@ -1149,11 +1292,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                     <li><strong>Supply Chain:</strong> Real-time tracking and optimization</li>
                     <li><strong>Customer 360:</strong> Build comprehensive customer views for personalization</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 26</div>
+        <div class="question" id="q26">
             <div class="question-title">Explain end-to-end data pipeline - What are the logics you followed</div>
             <div class="answer">
                 <p><strong>Typical Stages:</strong></p>
@@ -1173,11 +1316,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                     <li><strong>Cost Management:</strong> Monitor and optimize cloud resource usage</li>
                     <li><strong>Version Control:</strong> Git for all code (SQL, Python, DBT)</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 27</div>
+        <div class="question" id="q27">
             <div class="question-title">Why implement CDC instead of other approaches - Use case</div>
             <div class="answer">
                 <p><strong>Why CDC instead of full loads:</strong></p>
@@ -1191,11 +1334,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                 <p><strong>Real-world Use Case: E-commerce Inventory Management</strong></p>
                 <p>Problem without CDC: Nightly batch updates mean inventory is 12-24 hours old → customers order out-of-stock items, poor warehouse operations</p>
                 <p>Solution with CDC: Stream changes from inventory DB into Snowflake using CDC → near real-time dashboards → website always knows actual stock levels → automated reordering → efficient logistics</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 28</div>
+        <div class="question" id="q28">
             <div class="question-title">Snowflake Tasks - Troubleshooting failed queries and performance improvement</div>
             <div class="answer">
                 <p><strong>Snowflake Tasks:</strong> Execute SQL statements or call stored procedures on a recurring schedule or when conditions are met</p>
@@ -1214,11 +1357,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                     </li>
                     <li><strong>Task-Specific:</strong> Check TASK_HISTORY for STATE and ERROR_MESSAGE, verify warehouse is available</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 29</div>
+        <div class="question" id="q29">
             <div class="question-title">What is Zero Copy clone - Uses</div>
             <div class="answer">
                 <p>Zero-Copy Cloning creates an instant copy of a database, schema, or table without physically duplicating data. Snowflake creates metadata pointers to the same micro-partitions. Changes use copy-on-write.</p>
@@ -1241,11 +1384,11 @@ CREATE TABLE test_table CLONE prod_table;</pre>
                     <li><strong>Historical Analysis:</strong> Create monthly snapshots with minimal cost</li>
                     <li><strong>What-If Scenarios:</strong> Run simulations without impacting production</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 30</div>
+        <div class="question" id="q30">
             <div class="question-title">Convert timestamp from one timezone to another</div>
             <div class="answer">
                 <p>Snowflake has three TIMESTAMP types: TIMESTAMP_LTZ (Local Time Zone), TIMESTAMP_NTZ (No Time Zone), TIMESTAMP_TZ (Time Zone).</p>
@@ -1267,11 +1410,11 @@ FROM events;</pre>
 ALTER SESSION SET TIMEZONE = 'UTC';
 SELECT event_timestamp AT TIME ZONE 'Asia/Kolkata'
 FROM events;</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 31</div>
+        <div class="question" id="q31">
             <div class="question-title">Clustering Keys in Snowflake</div>
             <div class="answer">
                 <p>Clustering Keys optimize the physical organization of data within micro-partitions to improve query performance.</p>
@@ -1303,11 +1446,11 @@ ALTER TABLE sales DROP CLUSTERING KEY;</pre>
                     <li>Data ingestion patterns cause poor clustering over time</li>
                 </ul>
                 <p><strong>Monitor with:</strong> SYSTEM$CLUSTERING_INFORMATION() function</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 32</div>
+        <div class="question" id="q32">
             <div class="question-title">How to monitor Snowflake performance</div>
             <div class="answer">
                 <p><strong>Snowflake Web Interface:</strong></p>
@@ -1331,11 +1474,11 @@ ALTER TABLE sales DROP CLUSTERING KEY;</pre>
                     <li>Third-party APM tools (Datadog, Splunk)</li>
                     <li>BI tools for custom dashboards</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 33</div>
+        <div class="question" id="q33">
             <div class="question-title">Attacama and Collibra - Uses and Differences</div>
             <div class="answer">
                 <p><strong>Collibra:</strong> Business-centric data governance platform</p>
@@ -1372,11 +1515,11 @@ ALTER TABLE sales DROP CLUSTERING KEY;</pre>
                         <td>Data Engineers, Quality Teams</td>
                     </tr>
                 </table>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 34</div>
+        <div class="question" id="q34">
             <div class="question-title">How to optimize long running queries - How to reduce time</div>
             <div class="answer">
                 <p><strong>Step 1: Analyze Query Profile (Mandatory)</strong></p>
@@ -1406,11 +1549,11 @@ ALTER WAREHOUSE MY_WH SET WAREHOUSE_SIZE = 'LARGE';</pre>
                     <li>Encourage reuse of queries for result cache</li>
                     <li>Keep warehouses running for warehouse cache benefits</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 35</div>
+        <div class="question" id="q35">
             <div class="question-title">What is Snowpipe - How to integrate using AWS S3, SNS, SQS, Task, Stored Proc</div>
             <div class="answer">
                 <p>Snowpipe is Snowflake's continuous data ingestion service that loads data as soon as files appear in cloud storage.</p>
@@ -1462,11 +1605,11 @@ CREATE PROCEDURE process_new_data()
 CREATE TASK transform_task
   WHEN SYSTEM$STREAM_HAS_DATA('raw_data_stream')
   AS CALL process_new_data();</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 36</div>
+        <div class="question" id="q36">
             <div class="question-title">Max Salary for each department and 4th max salary for each department</div>
             <div class="answer">
                 <p><strong>Max Salary for Each Department:</strong></p>
@@ -1489,11 +1632,11 @@ SELECT employee_id, department, salary
 FROM RankedSalaries
 WHERE salary_rank = 4
 ORDER BY department;</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 37</div>
+        <div class="question" id="q37">
             <div class="question-title">Swap the gender value for a table - Male to Female, Female to Male</div>
             <div class="answer">
                 <pre>UPDATE users
@@ -1510,11 +1653,11 @@ WHERE gender IN ('Male', 'Female');</pre>
                     <li>ELSE gender preserves other values unchanged</li>
                     <li>WHERE clause optimizes by processing only relevant rows</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 38</div>
+        <div class="question" id="q38">
             <div class="question-title">DBT Project Architecture</div>
             <div class="answer">
                 <p><strong>Typical DBT Project Structure:</strong></p>
@@ -1540,11 +1683,11 @@ WHERE gender IN ('Male', 'Female');</pre>
                     <li><strong>Seeds:</strong> Static CSV files loaded as tables</li>
                     <li><strong>Snapshots:</strong> Capture historical changes (SCD Type 2)</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 39</div>
+        <div class="question" id="q39">
             <div class="question-title">Difference between UPSERT and MERGE</div>
             <div class="answer">
                 <p><strong>UPSERT:</strong> A conceptual operation - UPDATE if exists, INSERT if not</p>
@@ -1564,11 +1707,11 @@ staging: (1, 'Alice', 'alice@new.com'), (3, 'Charlie', 'charlie@example.com')
 
 -- After MERGE
 customers: (1, 'Alice', 'alice@new.com'), (2, 'Bob', 'bob@example.com'), (3, 'Charlie', 'charlie@example.com')</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 40</div>
+        <div class="question" id="q40">
             <div class="question-title">Data Masking and Masking Policy</div>
             <div class="answer">
                 <p><strong>Data Masking:</strong> Hiding sensitive data with fictional data while maintaining usefulness for development/testing/analytics.</p>
@@ -1586,11 +1729,11 @@ CREATE MASKING POLICY email_mask AS (val VARCHAR) RETURNS VARCHAR ->
 ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                 <p><strong>Benefits:</strong> Dynamic, centralized, granular control, secure, no data duplication</p>
                 <p><strong>Common Techniques:</strong> Substitution, shuffling, redaction, tokenization, hashing, encryption</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 41</div>
+        <div class="question" id="q41">
             <div class="question-title">Difference between Hashing and Encryption</div>
             <div class="answer">
                 <p><strong>Hashing:</strong> One-way function creating fixed-size unique string</p>
@@ -1634,11 +1777,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                         <td>Variable</td>
                     </tr>
                 </table>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 42</div>
+        <div class="question" id="q42">
             <div class="question-title">Snowflake storage integration with AWS S3</div>
             <div class="answer">
                 <p><strong>Purpose:</strong> Secure, credential-less access to S3 from Snowflake</p>
@@ -1665,11 +1808,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
   URL = 's3://bucket/path/'
   FILE_FORMAT = (TYPE = CSV);</pre>
                 <p><strong>Benefits:</strong> Enhanced security, centralized control, no exposed AWS keys</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 43</div>
+        <div class="question" id="q43">
             <div class="question-title">What is DBT and what problem does it solve in modern data stack</div>
             <div class="answer">
                 <p>DBT (data build tool) is a command-line framework for transforming data in your warehouse with modular SQL and software engineering best practices.</p>
@@ -1682,11 +1825,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                     <li><strong>Transparency:</strong> Makes entire transformation process transparent and auditable</li>
                 </ul>
                 <p><strong>Core Philosophy:</strong> Leverage the power of the data warehouse itself (pushing computations) rather than using separate processing engines</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 44</div>
+        <div class="question" id="q44">
             <div class="question-title">Core components of a DBT project: Models, Tests, Seeds</div>
             <div class="answer">
                 <p><strong>Models:</strong> SQL SELECT statements organized into transformation logic</p>
@@ -1707,11 +1850,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                     <li>Loaded via dbt seed command</li>
                 </ul>
                 <p><strong>Macros (Bonus):</strong> Reusable Jinja+SQL code snippets (like functions)</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 45</div>
+        <div class="question" id="q45">
             <div class="question-title">Materializations in DBT - Four default types</div>
             <div class="answer">
                 <p><strong>View (Default):</strong></p>
@@ -1742,11 +1885,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                     <li>Cons: Not queryable directly</li>
                     <li>Best for: Simple intermediate cleaning steps</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 46</div>
+        <div class="question" id="q46">
             <div class="question-title">Managing dependencies and referencing models in DBT</div>
             <div class="answer">
                 <p><strong>The ref() Function:</strong> Reference models without hardcoding schema names</p>
@@ -1766,11 +1909,11 @@ WHERE is_valid = TRUE</pre>
                     <li>dbt run executes models in correct order, ensuring source tables exist before use</li>
                 </ul>
                 <p><strong>Benefits:</strong> No manual ordering, automatic parallelization, clear dependencies</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 47</div>
+        <div class="question" id="q47">
             <div class="question-title">What is Jinja in DBT - Simple example</div>
             <div class="answer">
                 <p>Jinja is a templating language that adds programming logic to SQL. Processed before SQL reaches the warehouse.</p>
@@ -1792,11 +1935,11 @@ WHERE created_at >= '2023-01-01'</pre>
 WHERE created_at >= '2023-01-01'
   AND is_active = TRUE</pre>
                 <p><strong>Benefits:</strong> DRY (Don't Repeat Yourself), environment-specific logic, dynamic SQL generation</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 48</div>
+        <div class="question" id="q48">
             <div class="question-title">Data Governance best practices</div>
             <div class="answer">
                 <p><strong>Key Best Practices:</strong></p>
@@ -1812,11 +1955,11 @@ WHERE created_at >= '2023-01-01'
                     <li><strong>Documentation:</strong> Auto-generate and maintain docs (DBT, Collibra, Ataccama)</li>
                     <li><strong>Collaboration:</strong> Foster data culture, communication between teams</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 49</div>
+        <div class="question" id="q49">
             <div class="question-title">Data quality testing strategies</div>
             <div class="answer">
                 <p><strong>Common Testing Approaches:</strong></p>
@@ -1851,11 +1994,11 @@ WHERE created_at >= '2023-01-01'
                     </li>
                 </ol>
                 <p><strong>Tools:</strong> DBT tests, Great Expectations, Ataccama, custom SQL checks</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 50</div>
+        <div class="question" id="q50">
             <div class="question-title">Building a modern data stack - Technology selection</div>
             <div class="answer">
                 <p><strong>Typical Modern Data Stack Layers:</strong></p>
@@ -1878,11 +2021,11 @@ WHERE created_at >= '2023-01-01'
                     <li>Community and support</li>
                     <li>Security and compliance requirements</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 51</div>
+        <div class="question" id="q51">
             <div class="question-title">Future trends in data engineering</div>
             <div class="answer">
                 <p><strong>Emerging Trends:</strong></p>
@@ -1899,7 +2042,8 @@ WHERE created_at >= '2023-01-01'
                     <li><strong>Privacy-Preserving Technologies:</strong> Differential privacy, federated learning for sensitive data</li>
                 </ul>
                 <p><strong>Skills for Future:</strong> Cloud platforms (AWS/Azure/GCP), DBT, SQL, Python, Spark, containers, Kubernetes, ML basics</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
     </div>
@@ -1907,8 +2051,7 @@ WHERE created_at >= '2023-01-01'
 </html>
 <!DOCTYPE html>
 <html lang="en">
-                <div class="question">
-                        <div class="question-number">Question 58</div>
+                <div class="question" id="q58">
                         <div class="question-title">dbt Materializations — Syntax &amp; When to Use</div>
                         <div class="answer">
                                 <p><strong>Materialization defines how dbt builds a model in the warehouse.</strong></p>
@@ -1967,11 +2110,11 @@ group by order_id</pre>
                                 <ul>
                                         <li>No table/view — SQL is inlined into downstream models</li>
                                 </ul>
-                        </div>
+                        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
                 </div>
 
-                <div class="question">
-                        <div class="question-number">Question 59</div>
+                <div class="question" id="q59">
                         <div class="question-title">dbt Snapshots — Syntax &amp; Purpose</div>
                         <div class="answer">
                                 <p><strong>Snapshots are used for SCD Type 2.</strong></p>
@@ -2017,11 +2160,11 @@ from {{ ref('stg_products') }}
                                         <li>Timestamp: source has reliable <code>updated_at</code></li>
                                         <li>Check: no reliable timestamp — track changes on specific columns</li>
                                 </ul>
-                        </div>
+                        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
                 </div>
 
-                <div class="question">
-                        <div class="question-number">Question 60</div>
+                <div class="question" id="q60">
                         <div class="question-title">dbt YAML Files — Syntax, Indentation &amp; Purpose</div>
                         <div class="answer">
                                 <p><strong>YAML defines metadata, not SQL logic.</strong></p>
@@ -2070,11 +2213,11 @@ seeds:
             - name: country_code
                 tests:
                     - not_null</pre>
-                        </div>
+                        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
                 </div>
 
-                <div class="question">
-                        <div class="question-number">Question 61</div>
+                <div class="question" id="q61">
                         <div class="question-title">Tests in YAML — Built-in &amp; Relationships</div>
                         <div class="answer">
                                 <p><strong>Built-in tests</strong></p>
@@ -2089,11 +2232,11 @@ seeds:
     - relationships:
             to: ref('dim_customer')
             field: customer_id</pre>
-                        </div>
+                        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
                 </div>
 
-                <div class="question">
-                        <div class="question-number">Question 62</div>
+                <div class="question" id="q62">
                         <div class="question-title">Materialization Configuration via dbt_project.yml</div>
                         <div class="answer">
                                 <p><strong>Example</strong></p>
@@ -2108,11 +2251,11 @@ seeds:
                                 <ul>
                                         <li>Enforces standards and avoids per-model config</li>
                                 </ul>
-                        </div>
+                        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
                 </div>
 
-                <div class="question">
-                        <div class="question-number">Question 63</div>
+                <div class="question" id="q63">
                         <div class="question-title">Quick Interview Cheat Table &amp; Power Lines</div>
                         <div class="answer">
                                 <p><strong>Cheat table</strong></p>
@@ -2135,7 +2278,8 @@ seeds:
                                         <li>“Snapshots are the cleanest way to implement SCD Type 2.”</li>
                                         <li>“YAML defines what should be true, SQL defines how data is built.”</li>
                                 </ul>
-                        </div>
+                        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
                 </div>
 
         </div>
@@ -2288,7 +2432,70 @@ seeds:
                 font-size: 8pt;
             }
         }
-    </style>
+    
+html { scroll-behavior: smooth; }
+.question-title { color: #8e44ad !important; font-weight: 700; }
+
+/* ---------------- Responsive Enhancements ---------------- */
+.container {
+  max-width: 1100px;
+  padding: 20px;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+code {
+  word-break: break-word;
+}
+
+
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 1024px) {
+  
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  .question-title {
+    font-size: 1.15em;
+  }
+
+  .question {
+    padding-left: 15px;
+  }
+
+  .back-to-toc {
+    font-size: 0.8em;
+    padding: 6px 10px;
+  }
+}
+
+/* -------- TOC Layout Control -------- */
+#toc ul {
+  columns: 1;
+}
+
+@media (min-width: 1024px) {
+  #toc ul {
+    columns: 2;
+  }
+}
+</style>
 </head>
 <body>
     <div class="container">
@@ -2297,8 +2504,88 @@ seeds:
             <p class="subtitle">51 Comprehensive Questions with Detailed Answers</p>
         </header>
 
-        <div class="question">
-            <div class="question-number">Question 1</div>
+<div id="toc" class="toc-container">
+  <h2>📘 Contents</h2>
+  <ul>
+    <li><a href="#q1">Q1: Write a query to get how much compute hours consumed overall and also how much compute hrs used for each day</a></li>
+<li><a href="#q2">Q2: Snowflake Architecture</a></li>
+<li><a href="#q3">Q3: Time-Travel with scenarios like offset, query_id and timestamp</a></li>
+<li><a href="#q4">Q4: Optimize the query performance and how you do it</a></li>
+<li><a href="#q5">Q5: What is partition and what is micro-partitions</a></li>
+<li><a href="#q6">Q6: SCD Scenarios (SCD-0, SCD-1, SCD-2, SCD-3, SCD-4)</a></li>
+<li><a href="#q7">Q7: How you ingested JSON data into Snowflake, what steps you perform</a></li>
+<li><a href="#q8">Q8: If the file size is 50GB, how you will ingest the data</a></li>
+<li><a href="#q9">Q9: Internal and External stages in Snowflake - Uses for each</a></li>
+<li><a href="#q10">Q10: How you schedule a data pipeline in Snowflake</a></li>
+<li><a href="#q11">Q11: Stored Procedure</a></li>
+<li><a href="#q12">Q12: User Defined Functions (UDF)</a></li>
+<li><a href="#q13">Q13: What is Git</a></li>
+<li><a href="#q14">Q14: What is QUALIFY in Snowflake - Why it's used</a></li>
+<li><a href="#q15">Q15: Benefits of Snowflake</a></li>
+<li><a href="#q16">Q16: What is CDC (Change Data Capture) - Is it tool or term</a></li>
+<li><a href="#q17">Q17: Python questions - List and Tuple</a></li>
+<li><a href="#q18">Q18: AVRO, Parquet, ORC file formats - Uses</a></li>
+<li><a href="#q19">Q19: Difference between CTE and Temp table - Where to use</a></li>
+<li><a href="#q20">Q20: Difference between Transient and Dynamic and Dynamic Transient tables</a></li>
+<li><a href="#q21">Q21: How you will handle schema changes in the downstream</a></li>
+<li><a href="#q22">Q22: Ephemeral vs Permanent tables</a></li>
+<li><a href="#q23">Q23: How to implement CDC without ETL tools in Snowflake</a></li>
+<li><a href="#q24">Q24: What is DBT and uses - Execution plan</a></li>
+<li><a href="#q25">Q25: Why continuous data load used - Use cases</a></li>
+<li><a href="#q26">Q26: Explain end-to-end data pipeline - What are the logics you followed</a></li>
+<li><a href="#q27">Q27: Why implement CDC instead of other approaches - Use case</a></li>
+<li><a href="#q28">Q28: Snowflake Tasks - Troubleshooting failed queries and performance improvement</a></li>
+<li><a href="#q29">Q29: What is Zero Copy clone - Uses</a></li>
+<li><a href="#q30">Q30: Convert timestamp from one timezone to another</a></li>
+<li><a href="#q31">Q31: Clustering Keys in Snowflake</a></li>
+<li><a href="#q32">Q32: How to monitor Snowflake performance</a></li>
+<li><a href="#q33">Q33: Attacama and Collibra - Uses and Differences</a></li>
+<li><a href="#q34">Q34: How to optimize long running queries - How to reduce time</a></li>
+<li><a href="#q35">Q35: What is Snowpipe - How to integrate using AWS S3, SNS, SQS, Task, Stored Proc</a></li>
+<li><a href="#q36">Q36: Max Salary for each department and 4th max salary for each department</a></li>
+<li><a href="#q37">Q37: Swap the gender value for a table - Male to Female, Female to Male</a></li>
+<li><a href="#q38">Q38: DBT Project Architecture</a></li>
+<li><a href="#q39">Q39: Difference between UPSERT and MERGE</a></li>
+<li><a href="#q40">Q40: Data Masking and Masking Policy</a></li>
+<li><a href="#q41">Q41: Difference between Hashing and Encryption</a></li>
+<li><a href="#q42">Q42: Snowflake storage integration with AWS S3</a></li>
+<li><a href="#q43">Q43: What is DBT and what problem does it solve in modern data stack</a></li>
+<li><a href="#q44">Q44: Core components of a DBT project: Models, Tests, Seeds</a></li>
+<li><a href="#q45">Q45: Materializations in DBT - Four default types</a></li>
+<li><a href="#q46">Q46: Managing dependencies and referencing models in DBT</a></li>
+<li><a href="#q47">Q47: What is Jinja in DBT - Simple example</a></li>
+<li><a href="#q48">Q48: Data Governance best practices</a></li>
+<li><a href="#q49">Q49: Data quality testing strategies</a></li>
+<li><a href="#q50">Q50: Building a modern data stack - Technology selection</a></li>
+<li><a href="#q51">Q51: Future trends in data engineering</a></li>
+<li><a href="#q52">Q52: Explain your end-to-end data pipeline (tools + flow)</a></li>
+<li><a href="#q53">Q53: How do you use Python inside Airflow for orchestration and failure alerts?</a></li>
+<li><a href="#q54">Q54: How do you implement SCD Type 2 in dbt?</a></li>
+<li><a href="#q55">Q55: How does dbt snapshot handle deletes?</a></li>
+<li><a href="#q56">Q56: When and why do you use dbt seeds?</a></li>
+<li><a href="#q57">Q57: SQL Challenge – Orders and Payments</a></li>
+<li><a href="#q58">Q58: dbt Materializations — Syntax &amp; When to Use</a></li>
+<li><a href="#q59">Q59: dbt Snapshots — Syntax &amp; Purpose</a></li>
+<li><a href="#q60">Q60: dbt YAML Files — Syntax, Indentation &amp; Purpose</a></li>
+<li><a href="#q61">Q61: Tests in YAML — Built-in &amp; Relationships</a></li>
+<li><a href="#q62">Q62: Materialization Configuration via dbt_project.yml</a></li>
+<li><a href="#q63">Q63: Quick Interview Cheat Table &amp; Power Lines</a></li>
+<li><a href="#q64">Q64: Advanced Incremental Strategies – MERGE vs APPEND</a></li>
+<li><a href="#q65">Q65: Custom dbt Tests – Beyond Built-ins</a></li>
+<li><a href="#q66">Q66: Enterprise-Grade dbt Folder Structure</a></li>
+<li><a href="#q67">Q67: Production dbt Failures & Root Causes (What Seniors Face)</a></li>
+<li><a href="#q68">Q68: Senior-Level dbt Cheat Sheet & Interview Power Lines</a></li>
+<li><a href="#q69">Q69: Advanced dbt Macros & Jinja Templating Patterns</a></li>
+<li><a href="#q70">Q70: dbt Exposures & Metrics – Connecting to BI & Analytics</a></li>
+<li><a href="#q71">Q71: dbt on Snowflake: Performance Optimization & Run Config</a></li>
+<li><a href="#q72">Q72: Data Contracts & Dynamic Testing in dbt</a></li>
+<li><a href="#q73">Q73: CI/CD Workflows in dbt Cloud & Git-Driven Development</a></li>
+<li><a href="#q74">Q74: dbt Pre-Hooks & Post-Hooks – Advanced Execution Control</a></li>
+  </ul>
+</div>
+
+
+        <div class="question" id="q1">
             <div class="question-title">Write a query to get how much compute hours consumed overall and also how much compute hrs used for each day</div>
             <div class="answer">
                 <p>This requires interpreting the start and end events to calculate the duration. Assuming Date_timestamp is a DATETIME or TIMESTAMP column.</p>
@@ -2337,11 +2624,11 @@ ORDER BY Compute_Date;</pre>
                     <li><strong>ComputeDurations:</strong> Calculates the Duration_Seconds only for valid end events preceded by a start event</li>
                     <li><strong>Final SELECT:</strong> Sums durations to get Total and groups by date for Daily_Compute_Hours</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 2</div>
+        <div class="question" id="q2">
             <div class="question-title">Snowflake Architecture</div>
             <div class="answer">
                 <p>Snowflake's architecture is a unique multi-cluster shared data architecture. It separates compute and storage, allowing them to scale independently, and includes a cloud services layer for management.</p>
@@ -2352,11 +2639,11 @@ ORDER BY Compute_Date;</pre>
                     <li><strong>Cloud Services Layer:</strong> The brain of Snowflake, coordinating all activities including authentication, metadata management, query optimization, infrastructure management, and transaction management.</li>
                 </ul>
                 <p><strong>Analogy:</strong> Imagine a library where storage is the books on shelves, compute is the reading rooms, and cloud services is the librarian system managing everything.</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 3</div>
+        <div class="question" id="q3">
             <div class="question-title">Time-Travel with scenarios like offset, query_id and timestamp</div>
             <div class="answer">
                 <p>Snowflake's Time Travel feature allows you to query historical data that has been changed or deleted within a specified retention period (default 1 day, up to 90 days for Enterprise Edition).</p>
@@ -2371,11 +2658,11 @@ SELECT * FROM my_table AT (OFFSET => -300);</pre>
                 <p><strong>Using BEFORE (STATEMENT):</strong> Query data immediately before a specific DML statement executed.</p>
                 <pre>CREATE TABLE my_table_recovery AS
 SELECT * FROM my_table BEFORE (STATEMENT => '123abc456def');</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 4</div>
+        <div class="question" id="q4">
             <div class="question-title">Optimize the query performance and how you do it</div>
             <div class="answer">
                 <p><strong>Key Optimization Strategies:</strong></p>
@@ -2388,11 +2675,11 @@ SELECT * FROM my_table BEFORE (STATEMENT => '123abc456def');</pre>
                     <li><strong>Avoid Anti-Patterns:</strong> Don't use SELECT *, avoid correlated subqueries, eliminate unnecessary ORDER BY or DISTINCT.</li>
                     <li><strong>Monitor Query Profile:</strong> Use Snowflake's Query Profile to identify bottlenecks and optimize accordingly.</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 5</div>
+        <div class="question" id="q5">
             <div class="question-title">What is partition and what is micro-partitions</div>
             <div class="answer">
                 <p><strong>Partition (General Database Concept):</strong> A strategy to divide a large table into smaller, manageable pieces based on a specified column (e.g., date, region). Usually managed explicitly by the database administrator.</p>
@@ -2404,11 +2691,11 @@ SELECT * FROM my_table BEFORE (STATEMENT => '123abc456def');</pre>
                     <li>Query Pruning - metadata allows Snowflake to skip irrelevant micro-partitions</li>
                     <li>Clustering - you can define clustering keys to optimize physical co-location of data</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 6</div>
+        <div class="question" id="q6">
             <div class="question-title">SCD Scenarios (SCD-0, SCD-1, SCD-2, SCD-3, SCD-4)</div>
             <div class="answer">
                 <p><strong>SCD Type 0: Retain Original</strong> - No changes tracked. Dimension attribute value never changes.</p>
@@ -2421,11 +2708,11 @@ Result:
 - New row: Department: Marketing, StartDate: 2025-06-01, IsCurrent: TRUE</pre>
                 <p><strong>SCD Type 3: Add New Attribute</strong> - New column added for previous value. Partial history.</p>
                 <p><strong>SCD Type 4: Use History Table</strong> - Main table holds current (Type 1), separate history table stores all past versions (Type 2).</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 7</div>
+        <div class="question" id="q7">
             <div class="question-title">How you ingested JSON data into Snowflake, what steps you perform</div>
             <div class="answer">
                 <p><strong>Key Steps:</strong></p>
@@ -2453,11 +2740,11 @@ ON_ERROR = 'CONTINUE';</pre>
                     </li>
                     <li><strong>Query & Transform:</strong> Use VARIANT functions to extract and transform data</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 8</div>
+        <div class="question" id="q8">
             <div class="question-title">If the file size is 50GB, how you will ingest the data</div>
             <div class="answer">
                 <p><strong>For 50GB files, the approach is:</strong></p>
@@ -2482,11 +2769,11 @@ PURGE = TRUE;</pre>
                         </ul>
                     </li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 9</div>
+        <div class="question" id="q9">
             <div class="question-title">Internal and External stages in Snowflake - Uses for each</div>
             <div class="answer">
                 <p><strong>Internal Stages (Snowflake-managed Storage):</strong></p>
@@ -2528,11 +2815,11 @@ PURGE = TRUE;</pre>
                         <td>Large-scale automated</td>
                     </tr>
                 </table>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 10</div>
+        <div class="question" id="q10">
             <div class="question-title">How you schedule a data pipeline in Snowflake</div>
             <div class="answer">
                 <p><strong>Snowflake Tasks (Native):</strong></p>
@@ -2557,11 +2844,11 @@ CREATE TASK transform_data
 ALTER TASK load_raw_data RESUME;
 ALTER TASK transform_data RESUME;</pre>
                 <p><strong>External Orchestration Tools:</strong> Apache Airflow, AWS Step Functions, Azure Data Factory, Control-M, Autosys - for complex cross-platform pipelines.</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 11</div>
+        <div class="question" id="q11">
             <div class="question-title">Stored Procedure</div>
             <div class="answer">
                 <p>A Stored Procedure is a set of SQL statements and procedural logic compiled and stored in the database. It can be executed by calling its name with input parameters.</p>
@@ -2591,11 +2878,11 @@ BEGIN
     END IF;
 END;
 $$;</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 12</div>
+        <div class="question" id="q12">
             <div class="question-title">User Defined Functions (UDF)</div>
             <div class="answer">
                 <p>A User Defined Function is a custom function that performs specific operations, similar to built-in functions. UDFs encapsulate logic that can be reused within SQL queries.</p>
@@ -2615,11 +2902,11 @@ $$;
 SELECT order_id, calculate_net_sales(sales_amount, return_amount) AS net_sales
 FROM daily_transactions;</pre>
                 <p><strong>Languages Supported:</strong> SQL, JavaScript, Python, Java, Scala (via Snowpark)</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 13</div>
+        <div class="question" id="q13">
             <div class="question-title">What is Git</div>
             <div class="answer">
                 <p>Git is a free, open-source distributed version control system (DVCS) designed to handle projects of any size. It tracks changes in source code and other files during software development, enabling collaborative work and complete change history.</p>
@@ -2644,11 +2931,11 @@ git checkout main                             # Switch back to main
 git pull origin main                          # Get latest main
 git merge feature/new-analysis                # Merge feature branch</pre>
                 <p><strong>For Data Teams:</strong> Git is essential for version controlling DBT projects, SQL scripts, Python ETL code, and documentation. Enables code review, audit trails, and rollback capabilities</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 14</div>
+        <div class="question" id="q14">
             <div class="question-title">What is QUALIFY in Snowflake - Why it's used</div>
             <div class="answer">
                 <p>QUALIFY is a clause unique to Snowflake that filters results of window functions without needing to wrap queries in subqueries or CTEs.</p>
@@ -2664,11 +2951,11 @@ QUALIFY RANK() OVER (PARTITION BY department ORDER BY salary DESC) = 2;</pre>
 )
 SELECT * FROM EmployeeRank WHERE rnk = 2;</pre>
                 <p><strong>Benefits:</strong> Simplicity, readability, potential performance improvements, direct filtering on window function results</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 15</div>
+        <div class="question" id="q15">
             <div class="question-title">Benefits of Snowflake</div>
             <div class="answer">
                 <p><strong>Key Benefits:</strong></p>
@@ -2685,11 +2972,11 @@ SELECT * FROM EmployeeRank WHERE rnk = 2;</pre>
                     <li><strong>Ecosystem Integration:</strong> Native connectors for Tableau, Power BI, Looker. DBT integration, Spark through connectors, Python/Pandas via snowpark_python</li>
                 </ul>
                 <p><strong>Cost Efficiency Example:</strong> Traditional data warehouse requires expensive hardware, undergoes periods of low utilization (pay for unused capacity). Snowflake: suspend warehouse when not used, pay only for storage. Scale up for batch jobs, down immediately after</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 16</div>
+        <div class="question" id="q16">
             <div class="question-title">What is CDC (Change Data Capture) - Is it tool or term</div>
             <div class="answer">
                 <p>CDC is primarily a <strong>term and technique</strong> (not a single tool). It identifies and captures changes (INSERT, UPDATE, DELETE) made to data in a source database and delivers those changes to a target system efficiently instead of reprocessing entire datasets.</p>
@@ -2712,11 +2999,11 @@ COPY INTO warehouse_sales FROM change_stream  -- Only 1GB changed
 -- Near real-time data availability</pre>
                 <p><strong>Popular CDC Tools:</strong> Qlik Replicate (log-based), Fivetran (managed CDC), Debezium (Kafka-based open source), Oracle GoldenGate (enterprise), AWS DMS, Apache Hudi/Iceberg (data lake CDC)</p>
                 <p><strong>Real Use Cases:</strong> Real-time analytics dashboards, microservices data synchronization, database migration with zero downtime, maintaining dimensional data in data warehouse</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 17</div>
+        <div class="question" id="q17">
             <div class="question-title">Python questions - List and Tuple</div>
             <div class="answer">
                 <p><strong>List []: Mutable (changeable)</strong> - ordered collection that can be modified after creation</p>
@@ -2795,11 +3082,11 @@ print(len(my_tuple))          # Length</pre>
                     </tr>
                 </table>
                 <p><strong>In Data Engineering:</strong> Tuples used for immutable data records, fixed field orders. Lists used for accumulating/processing data. DBT source definitions, data lineage metadata often use tuples</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 18</div>
+        <div class="question" id="q18">
             <div class="question-title">AVRO, Parquet, ORC file formats - Uses</div>
             <div class="answer">
                 <p><strong>AVRO (Apache Avro):</strong> Row-oriented data serialization format with self-describing schema</p>
@@ -2890,11 +3177,11 @@ print(len(my_tuple))          # Length</pre>
                     </tr>
                 </table>
                 <p><strong>Recommendation for Modern Data Stack:</strong> Use Parquet for data lakes (S3/ADLS); Use Avro for streaming pipelines and CDC; ORC if using Hadoop ecosystem</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 19</div>
+        <div class="question" id="q19">
             <div class="question-title">Difference between CTE and Temp table - Where to use</div>
             <div class="answer">
                 <p><strong>CTE (Common Table Expression) - WITH Clause:</strong> Temporary named result set defined within a single query. Often called "WITH clause" or subquery alternative</p>
@@ -2996,11 +3283,11 @@ SELECT * FROM top_customers;
                     <li>Multi-step ETL processes in stored procedures</li>
                     <li>Needing to add indexes or optimize for specific access patterns</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 20</div>
+        <div class="question" id="q20">
             <div class="question-title">Difference between Transient and Dynamic and Dynamic Transient tables</div>
             <div class="answer">
                 <p><strong>TRANSIENT Table:</strong> Designed specifically for temporary data that doesn't require long-term protection</p>
@@ -3029,11 +3316,11 @@ WHERE processing_complete = TRUE;
                     <li><strong>Project-specific Naming:</strong> Custom conventions for different use cases</li>
                 </ul>
                 <p>In production, most tables are either <strong>Permanent</strong> (for analytics) or <strong>Transient</strong> (for staging). See Question 22 for Ephemeral/Temporary tables comparison.</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 21</div>
+        <div class="question" id="q21">
             <div class="question-title">How you will handle schema changes in the downstream</div>
             <div class="answer">
                 <p><strong>Strategies for Handling Schema Changes:</strong></p>
@@ -3055,11 +3342,11 @@ CREATE VIEW v_customer AS SELECT customer_id, primary_contact_email AS email FRO
                     <li><strong>Impact Analysis & Testing:</strong> Understand dependencies, test in dev/test before prod</li>
                     <li><strong>Graceful Degradation:</strong> Implement logic that handles missing columns gracefully</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 22</div>
+        <div class="question" id="q22">
             <div class="question-title">Ephemeral vs Permanent tables</div>
             <div class="answer">
                 <p><strong>Permanent Table (Default):</strong> Standard table type with full data durability</p>
@@ -3105,11 +3392,11 @@ CREATE VIEW v_customer AS SELECT customer_id, primary_contact_email AS email FRO
                         <td>Lowest</td>
                     </tr>
                 </table>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 23</div>
+        <div class="question" id="q23">
             <div class="question-title">How to implement CDC without ETL tools in Snowflake</div>
             <div class="answer">
                 <p><strong>Strategy 1: Timestamp-Based CDC</strong></p>
@@ -3137,11 +3424,11 @@ ON t.id = s.id
 WHEN MATCHED AND s.METADATA$ACTION='DELETE' THEN DELETE
 WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                 <p><strong>Benefits of Streams:</strong> Exactly-once processing, captures all DML, low performance impact</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 24</div>
+        <div class="question" id="q24">
             <div class="question-title">What is DBT and uses - Execution plan</div>
             <div class="answer">
                 <p>DBT (Data Build Tool) is an open-source framework that enables data analysts to transform data in their warehouse using SQL and software engineering best practices. It focuses on the T in ELT.</p>
@@ -3164,11 +3451,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                     <li><strong>SQL Generation & Execution:</strong> Generate SQL, execute in warehouse in correct order</li>
                     <li><strong>Post-Run Actions:</strong> Run tests, generate documentation</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 25</div>
+        <div class="question" id="q25">
             <div class="question-title">Why continuous data load used - Use cases</div>
             <div class="answer">
                 <p>Continuous data loading moves data as soon as it becomes available, providing near real-time insights instead of batch windows.</p>
@@ -3191,11 +3478,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                     <li><strong>Supply Chain:</strong> Real-time tracking and optimization</li>
                     <li><strong>Customer 360:</strong> Build comprehensive customer views for personalization</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 26</div>
+        <div class="question" id="q26">
             <div class="question-title">Explain end-to-end data pipeline - What are the logics you followed</div>
             <div class="answer">
                 <p><strong>Typical Stages:</strong></p>
@@ -3215,11 +3502,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                     <li><strong>Cost Management:</strong> Monitor and optimize cloud resource usage</li>
                     <li><strong>Version Control:</strong> Git for all code (SQL, Python, DBT)</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 27</div>
+        <div class="question" id="q27">
             <div class="question-title">Why implement CDC instead of other approaches - Use case</div>
             <div class="answer">
                 <p><strong>Why CDC instead of full loads:</strong></p>
@@ -3233,11 +3520,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                 <p><strong>Real-world Use Case: E-commerce Inventory Management</strong></p>
                 <p>Problem without CDC: Nightly batch updates mean inventory is 12-24 hours old → customers order out-of-stock items, poor warehouse operations</p>
                 <p>Solution with CDC: Stream changes from inventory DB into Snowflake using CDC → near real-time dashboards → website always knows actual stock levels → automated reordering → efficient logistics</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 28</div>
+        <div class="question" id="q28">
             <div class="question-title">Snowflake Tasks - Troubleshooting failed queries and performance improvement</div>
             <div class="answer">
                 <p><strong>Snowflake Tasks:</strong> Execute SQL statements or call stored procedures on a recurring schedule or when conditions are met</p>
@@ -3256,11 +3543,11 @@ WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
                     </li>
                     <li><strong>Task-Specific:</strong> Check TASK_HISTORY for STATE and ERROR_MESSAGE, verify warehouse is available</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 29</div>
+        <div class="question" id="q29">
             <div class="question-title">What is Zero Copy clone - Uses</div>
             <div class="answer">
                 <p>Zero-Copy Cloning creates an instant copy of a database, schema, or table without physically duplicating data. Snowflake creates metadata pointers to the same micro-partitions. Changes use copy-on-write.</p>
@@ -3283,11 +3570,11 @@ CREATE TABLE test_table CLONE prod_table;</pre>
                     <li><strong>Historical Analysis:</strong> Create monthly snapshots with minimal cost</li>
                     <li><strong>What-If Scenarios:</strong> Run simulations without impacting production</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 30</div>
+        <div class="question" id="q30">
             <div class="question-title">Convert timestamp from one timezone to another</div>
             <div class="answer">
                 <p>Snowflake has three TIMESTAMP types: TIMESTAMP_LTZ (Local Time Zone), TIMESTAMP_NTZ (No Time Zone), TIMESTAMP_TZ (Time Zone).</p>
@@ -3309,11 +3596,11 @@ FROM events;</pre>
 ALTER SESSION SET TIMEZONE = 'UTC';
 SELECT event_timestamp AT TIME ZONE 'Asia/Kolkata'
 FROM events;</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 31</div>
+        <div class="question" id="q31">
             <div class="question-title">Clustering Keys in Snowflake</div>
             <div class="answer">
                 <p>Clustering Keys optimize the physical organization of data within micro-partitions to improve query performance.</p>
@@ -3345,11 +3632,11 @@ ALTER TABLE sales DROP CLUSTERING KEY;</pre>
                     <li>Data ingestion patterns cause poor clustering over time</li>
                 </ul>
                 <p><strong>Monitor with:</strong> SYSTEM$CLUSTERING_INFORMATION() function</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 32</div>
+        <div class="question" id="q32">
             <div class="question-title">How to monitor Snowflake performance</div>
             <div class="answer">
                 <p><strong>Snowflake Web Interface:</strong></p>
@@ -3373,11 +3660,11 @@ ALTER TABLE sales DROP CLUSTERING KEY;</pre>
                     <li>Third-party APM tools (Datadog, Splunk)</li>
                     <li>BI tools for custom dashboards</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 33</div>
+        <div class="question" id="q33">
             <div class="question-title">Attacama and Collibra - Uses and Differences</div>
             <div class="answer">
                 <p><strong>Collibra:</strong> Business-centric data governance platform</p>
@@ -3414,11 +3701,11 @@ ALTER TABLE sales DROP CLUSTERING KEY;</pre>
                         <td>Data Engineers, Quality Teams</td>
                     </tr>
                 </table>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 34</div>
+        <div class="question" id="q34">
             <div class="question-title">How to optimize long running queries - How to reduce time</div>
             <div class="answer">
                 <p><strong>Step 1: Analyze Query Profile (Mandatory)</strong></p>
@@ -3448,11 +3735,11 @@ ALTER WAREHOUSE MY_WH SET WAREHOUSE_SIZE = 'LARGE';</pre>
                     <li>Encourage reuse of queries for result cache</li>
                     <li>Keep warehouses running for warehouse cache benefits</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 35</div>
+        <div class="question" id="q35">
             <div class="question-title">What is Snowpipe - How to integrate using AWS S3, SNS, SQS, Task, Stored Proc</div>
             <div class="answer">
                 <p>Snowpipe is Snowflake's continuous data ingestion service that loads data as soon as files appear in cloud storage.</p>
@@ -3504,11 +3791,11 @@ CREATE PROCEDURE process_new_data()
 CREATE TASK transform_task
   WHEN SYSTEM$STREAM_HAS_DATA('raw_data_stream')
   AS CALL process_new_data();</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 36</div>
+        <div class="question" id="q36">
             <div class="question-title">Max Salary for each department and 4th max salary for each department</div>
             <div class="answer">
                 <p><strong>Max Salary for Each Department:</strong></p>
@@ -3531,11 +3818,11 @@ SELECT employee_id, department, salary
 FROM RankedSalaries
 WHERE salary_rank = 4
 ORDER BY department;</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 37</div>
+        <div class="question" id="q37">
             <div class="question-title">Swap the gender value for a table - Male to Female, Female to Male</div>
             <div class="answer">
                 <pre>UPDATE users
@@ -3552,11 +3839,11 @@ WHERE gender IN ('Male', 'Female');</pre>
                     <li>ELSE gender preserves other values unchanged</li>
                     <li>WHERE clause optimizes by processing only relevant rows</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 38</div>
+        <div class="question" id="q38">
             <div class="question-title">DBT Project Architecture</div>
             <div class="answer">
                 <p><strong>Typical DBT Project Structure:</strong></p>
@@ -3582,11 +3869,11 @@ WHERE gender IN ('Male', 'Female');</pre>
                     <li><strong>Seeds:</strong> Static CSV files loaded as tables</li>
                     <li><strong>Snapshots:</strong> Capture historical changes (SCD Type 2)</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 39</div>
+        <div class="question" id="q39">
             <div class="question-title">Difference between UPSERT and MERGE</div>
             <div class="answer">
                 <p><strong>UPSERT:</strong> A conceptual operation - UPDATE if exists, INSERT if not</p>
@@ -3606,11 +3893,11 @@ staging: (1, 'Alice', 'alice@new.com'), (3, 'Charlie', 'charlie@example.com')
 
 -- After MERGE
 customers: (1, 'Alice', 'alice@new.com'), (2, 'Bob', 'bob@example.com'), (3, 'Charlie', 'charlie@example.com')</pre>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 40</div>
+        <div class="question" id="q40">
             <div class="question-title">Data Masking and Masking Policy</div>
             <div class="answer">
                 <p><strong>Data Masking:</strong> Hiding sensitive data with fictional data while maintaining usefulness for development/testing/analytics.</p>
@@ -3628,11 +3915,11 @@ CREATE MASKING POLICY email_mask AS (val VARCHAR) RETURNS VARCHAR ->
 ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                 <p><strong>Benefits:</strong> Dynamic, centralized, granular control, secure, no data duplication</p>
                 <p><strong>Common Techniques:</strong> Substitution, shuffling, redaction, tokenization, hashing, encryption</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 41</div>
+        <div class="question" id="q41">
             <div class="question-title">Difference between Hashing and Encryption</div>
             <div class="answer">
                 <p><strong>Hashing:</strong> One-way function creating fixed-size unique string</p>
@@ -3676,11 +3963,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                         <td>Variable</td>
                     </tr>
                 </table>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 42</div>
+        <div class="question" id="q42">
             <div class="question-title">Snowflake storage integration with AWS S3</div>
             <div class="answer">
                 <p><strong>Purpose:</strong> Secure, credential-less access to S3 from Snowflake</p>
@@ -3707,11 +3994,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
   URL = 's3://bucket/path/'
   FILE_FORMAT = (TYPE = CSV);</pre>
                 <p><strong>Benefits:</strong> Enhanced security, centralized control, no exposed AWS keys</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 43</div>
+        <div class="question" id="q43">
             <div class="question-title">What is DBT and what problem does it solve in modern data stack</div>
             <div class="answer">
                 <p>DBT (data build tool) is a command-line framework for transforming data in your warehouse with modular SQL and software engineering best practices.</p>
@@ -3724,11 +4011,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                     <li><strong>Transparency:</strong> Makes entire transformation process transparent and auditable</li>
                 </ul>
                 <p><strong>Core Philosophy:</strong> Leverage the power of the data warehouse itself (pushing computations) rather than using separate processing engines</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 44</div>
+        <div class="question" id="q44">
             <div class="question-title">Core components of a DBT project: Models, Tests, Seeds</div>
             <div class="answer">
                 <p><strong>Models:</strong> SQL SELECT statements organized into transformation logic</p>
@@ -3749,11 +4036,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                     <li>Loaded via dbt seed command</li>
                 </ul>
                 <p><strong>Macros (Bonus):</strong> Reusable Jinja+SQL code snippets (like functions)</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 45</div>
+        <div class="question" id="q45">
             <div class="question-title">Materializations in DBT - Four default types</div>
             <div class="answer">
                 <p><strong>View (Default):</strong></p>
@@ -3784,11 +4071,11 @@ ALTER TABLE users ALTER COLUMN email SET MASKING POLICY email_mask;</pre>
                     <li>Cons: Not queryable directly</li>
                     <li>Best for: Simple intermediate cleaning steps</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 46</div>
+        <div class="question" id="q46">
             <div class="question-title">Managing dependencies and referencing models in DBT</div>
             <div class="answer">
                 <p><strong>The ref() Function:</strong> Reference models without hardcoding schema names</p>
@@ -3808,11 +4095,11 @@ WHERE is_valid = TRUE</pre>
                     <li>dbt run executes models in correct order, ensuring source tables exist before use</li>
                 </ul>
                 <p><strong>Benefits:</strong> No manual ordering, automatic parallelization, clear dependencies</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 47</div>
+        <div class="question" id="q47">
             <div class="question-title">What is Jinja in DBT - Simple example</div>
             <div class="answer">
                 <p>Jinja is a templating language that adds programming logic to SQL. Processed before SQL reaches the warehouse.</p>
@@ -3834,11 +4121,11 @@ WHERE created_at >= '2023-01-01'</pre>
 WHERE created_at >= '2023-01-01'
   AND is_active = TRUE</pre>
                 <p><strong>Benefits:</strong> DRY (Don't Repeat Yourself), environment-specific logic, dynamic SQL generation</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 48</div>
+        <div class="question" id="q48">
             <div class="question-title">Data Governance best practices</div>
             <div class="answer">
                 <p><strong>Key Best Practices:</strong></p>
@@ -3854,11 +4141,11 @@ WHERE created_at >= '2023-01-01'
                     <li><strong>Documentation:</strong> Auto-generate and maintain docs (DBT, Collibra, Ataccama)</li>
                     <li><strong>Collaboration:</strong> Foster data culture, communication between teams</li>
                 </ol>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 49</div>
+        <div class="question" id="q49">
             <div class="question-title">Data quality testing strategies</div>
             <div class="answer">
                 <p><strong>Common Testing Approaches:</strong></p>
@@ -3893,11 +4180,11 @@ WHERE created_at >= '2023-01-01'
                     </li>
                 </ol>
                 <p><strong>Tools:</strong> DBT tests, Great Expectations, Ataccama, custom SQL checks</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 50</div>
+        <div class="question" id="q50">
             <div class="question-title">Building a modern data stack - Technology selection</div>
             <div class="answer">
                 <p><strong>Typical Modern Data Stack Layers:</strong></p>
@@ -3920,11 +4207,11 @@ WHERE created_at >= '2023-01-01'
                     <li>Community and support</li>
                     <li>Security and compliance requirements</li>
                 </ul>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
-        <div class="question">
-            <div class="question-number">Question 51</div>
+        <div class="question" id="q51">
             <div class="question-title">Future trends in data engineering</div>
             <div class="answer">
                 <p><strong>Emerging Trends:</strong></p>
@@ -3941,13 +4228,13 @@ WHERE created_at >= '2023-01-01'
                     <li><strong>Privacy-Preserving Technologies:</strong> Differential privacy, federated learning for sensitive data</li>
                 </ul>
                 <p><strong>Skills for Future:</strong> Cloud platforms (AWS/Azure/GCP), DBT, SQL, Python, Spark, containers, Kubernetes, ML basics</p>
-            </div>
+            <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
         </div>
 
     <!-- Appended Snowflake + dbt Interview Q&A -->
 
-    <div class="question">
-        <div class="question-number">Question 52</div>
+    <div class="question" id="q52">
         <div class="question-title">Explain your end-to-end data pipeline (tools + flow)</div>
         <div class="answer">
             <p><strong>Answer:</strong></p>
@@ -3973,11 +4260,11 @@ WHERE created_at >= '2023-01-01'
                 <li><strong>dbt</strong> owns business logic and data modeling</li>
                 <li><strong>Airflow</strong> manages scheduling, dependencies, and retries</li>
             </ul>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 53</div>
+    <div class="question" id="q53">
         <div class="question-title">How do you use Python inside Airflow for orchestration and failure alerts?</div>
         <div class="answer">
             <p><strong>Answer:</strong></p>
@@ -4006,11 +4293,11 @@ WHERE created_at >= '2023-01-01'
 
             <p><em>Interview-ready line:</em></p>
             <p><strong>“Airflow controls <em>when</em> and <em>in what order</em> things run, while dbt controls <em>how</em> the data is transformed.”</strong></p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 54</div>
+    <div class="question" id="q54">
         <div class="question-title">How do you implement SCD Type 2 in dbt?</div>
         <div class="answer">
             <p><strong>Answer:</strong></p>
@@ -4039,11 +4326,11 @@ select * from {{ ref('stg_customers') }}
             </ul>
 
             <p><strong>Common use cases:</strong> Customer attribute history, product price changes, account/subscription status tracking</p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 55</div>
+    <div class="question" id="q55">
         <div class="question-title">How does dbt snapshot handle deletes?</div>
         <div class="answer">
             <p><strong>Answer:</strong></p>
@@ -4064,11 +4351,11 @@ select * from {{ ref('stg_customers') }}
 
             <p><em>Interview-ready line:</em></p>
             <p><strong>“dbt snapshots don’t track deletes by default; hard deletes must be explicitly enabled.”</strong></p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 56</div>
+    <div class="question" id="q56">
         <div class="question-title">When and why do you use dbt seeds?</div>
         <div class="answer">
             <p><strong>Answer:</strong></p>
@@ -4097,11 +4384,11 @@ select * from {{ ref('stg_customers') }}
 
             <p><em>One-liner for interviews:</em></p>
             <p><strong>“dbt seeds are ideal for small, stable reference data that belongs with transformation logic.”</strong></p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 57</div>
+    <div class="question" id="q57">
         <div class="question-title">SQL Challenge – Orders and Payments</div>
         <div class="answer">
             <p><strong>Problem:</strong></p>
@@ -4134,11 +4421,11 @@ WHERE COALESCE(paid_amount, 0) &lt; order_amount;</pre>
                 <li>Handles orders with no payments</li>
                 <li>Encodes business logic, not just joins</li>
             </ul>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 58</div>
+    <div class="question" id="q58">
         <div class="question-title">dbt Materializations – Syntax & When to Use</div>
         <div class="answer">
             <p>Materialization defines <strong>how dbt builds a model in the warehouse</strong>.</p>
@@ -4197,11 +4484,11 @@ group by order_id</pre>
                 <li><strong>When to use:</strong> Reusable logic, intermediate calculations</li>
                 <li><strong>Interview line:</strong> "Ephemeral models are like SQL macros with structure."</li>
             </ul>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 59</div>
+    <div class="question" id="q59">
         <div class="question-title">dbt Snapshots – Full Syntax & Purpose (SCD Type 2)</div>
         <div class="answer">
             <p>Snapshots are used for <strong>SCD Type 2</strong> – tracking changes over time.</p>
@@ -4252,11 +4539,11 @@ from {{ ref('stg_products') }}
                 <li><code>target_schema</code> – Where snapshots are stored</li>
                 <li><code>unique_key</code> – Column(s) identifying a record</li>
             </ul>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 60</div>
+    <div class="question" id="q60">
         <div class="question-title">dbt YAML Files – Syntax, Indentation & Purpose</div>
         <div class="answer">
             <p>YAML defines <strong>metadata and tests</strong>, not SQL logic.</p>
@@ -4316,11 +4603,11 @@ models:
       - relationships:
           to: ref('dim_customer')
           field: customer_id</pre>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 61</div>
+    <div class="question" id="q61">
         <div class="question-title">Source YAML, Snapshot YAML, and Seeds YAML</div>
         <div class="answer">
             <p><strong>Source YAML (sources.yml)</strong></p>
@@ -4370,11 +4657,11 @@ seeds:
                 <li><strong>To load:</strong> <code>dbt seed</code></li>
                 <li><strong>Usage in models:</strong> <code>{{ ref('country_codes') }}</code></li>
             </ul>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 62</div>
+    <div class="question" id="q62">
         <div class="question-title">Tests in YAML – Built-in & Custom Tests</div>
         <div class="answer">
             <p><strong>Built-in Generic Tests</strong></p>
@@ -4412,11 +4699,11 @@ where amount &lt; 0</pre>
             </ul>
 
             <p><strong>Interview Line:</strong> "Tests are the backbone of data quality in dbt – they run after every build and catch issues early."</p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 63</div>
+    <div class="question" id="q63">
         <div class="question-title">dbt_project.yml Configuration & Interview Power Lines</div>
         <div class="answer">
             <p><strong>dbt_project.yml – Enforce Materialization Standards</strong></p>
@@ -4503,11 +4790,11 @@ models:
                 <li><strong>"Views for staging keep iterative work fast; tables for marts ensure performance."</strong></li>
                 <li><strong>"Tests catch data quality issues before they reach BI tools or dashboards."</strong></li>
             </ul>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 64</div>
+    <div class="question" id="q64">
         <div class="question-title">Advanced Incremental Strategies – MERGE vs APPEND</div>
         <div class="answer">
             <p>Incremental ≠ one thing. There are <strong>multiple patterns</strong>, and choosing the wrong one causes <strong>duplicates, data loss, or high cost</strong>.</p>
@@ -4585,11 +4872,11 @@ from {{ ref('stg_events') }}
                     <td>delete+insert</td>
                 </tr>
             </table>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 65</div>
+    <div class="question" id="q65">
         <div class="question-title">Custom dbt Tests – Beyond Built-ins</div>
         <div class="answer">
             <p>Built-in tests are <strong>not enough</strong> in real projects. Custom tests validate business logic.</p>
@@ -4633,11 +4920,11 @@ where p.order_id is null</pre>
   - dbt_utils.expression_is_true:
       expression: "dbt_valid_to > dbt_valid_from"</pre>
             <p><strong>Key Takeaway:</strong> Custom tests catch production bugs early. Integration tests are the last line of defense.</p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 66</div>
+    <div class="question" id="q66">
         <div class="question-title">Enterprise-Grade dbt Folder Structure</div>
         <div class="answer">
             <p>Bad structure = unmaintainable project. This is <strong>conversion-critical</strong>.</p>
@@ -4728,11 +5015,11 @@ where p.order_id is null</pre>
                 <li>"Folder structure enforces responsibility boundaries."</li>
                 <li>"dbt scales through convention, not configuration."</li>
             </ul>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 67</div>
+    <div class="question" id="q67">
         <div class="question-title">Production dbt Failures & Root Causes (What Seniors Face)</div>
         <div class="answer">
             <p><strong>These scenarios separate junior users from senior owners. Interviewers love failure stories.</strong></p>
@@ -4790,11 +5077,11 @@ select * from source</pre>
             <p><strong>Interview Line:</strong> "Staging models act as shock absorbers for upstream changes."</p>
 
             <p><strong>Key Takeaway:</strong> Most production issues stem from wrong materialization choice or missing constraints. Prevention is cheaper than firefighting.</p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 68</div>
+    <div class="question" id="q68">
         <div class="question-title">Senior-Level dbt Cheat Sheet & Interview Power Lines</div>
         <div class="answer">
             <p><strong>Memorize this table before every interview.</strong></p>
@@ -4958,11 +5245,11 @@ marts:
                 <li><strong>"Staging layers isolate upstream chaos; marts define business truth."</strong></li>
                 <li><strong>"MERGE ensures idempotency in production pipelines."</strong></li>
             </ul>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 69</div>
+    <div class="question" id="q69">
         <div class="question-title">Advanced dbt Macros & Jinja Templating Patterns</div>
         <div class="answer">
             <p><strong>Macros are reusable SQL/Jinja snippets. They're the difference between repetitive code and elegant architecture.</strong></p>
@@ -5014,11 +5301,11 @@ from {{ ref('stg_orders') }}</pre>
             </ul>
 
             <p><strong>Interview line:</strong> "Macros reduce duplication by centralizing transformation logic. They're the foundation of scalable dbt projects."</p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 70</div>
+    <div class="question" id="q70">
         <div class="question-title">dbt Exposures & Metrics – Connecting to BI & Analytics</div>
         <div class="answer">
             <p><strong>Exposures define downstream BI artifacts (dashboards, reports) that depend on dbt models. They enable end-to-end lineage tracking.</strong></p>
@@ -5081,11 +5368,11 @@ exposures:
   pii: true
   retention_days: 90
   tags: [critical, gdpr-sensitive]</pre>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 71</div>
+    <div class="question" id="q71">
         <div class="question-title">dbt on Snowflake: Performance Optimization & Run Config</div>
         <div class="answer">
             <p><strong>Snowflake-specific tuning that senior engineers use in production to reduce cost and runtime.</strong></p>
@@ -5157,11 +5444,11 @@ prod:
       threads: 8</pre>
 
             <p><strong>Interview line:</strong> "Small warehouses for dev, large for prod, clustering for fact tables, transient for temps. This cuts costs by 40%."</p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 72</div>
+    <div class="question" id="q72">
         <div class="question-title">Data Contracts & Dynamic Testing in dbt</div>
         <div class="answer">
             <p><strong>Contracts enforce schema guarantees between producers and consumers. They detect breaking changes before they reach dashboards.</strong></p>
@@ -5228,11 +5515,11 @@ prod:
 )
 select * from exclusive_check</pre>
             <p><strong>Interview line:</strong> "Contracts catch schema breaking changes at parse time. Dynamic tests catch data anomalies at execution time."</p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 73</div>
+    <div class="question" id="q73">
         <div class="question-title">CI/CD Workflows in dbt Cloud & Git-Driven Development</div>
         <div class="answer">
             <p><strong>Modern dbt development = Git + dbt Cloud + Automated Testing. This is how seniors ship reliable changes.</strong></p>
@@ -5296,11 +5583,11 @@ dbt test --select state:modified+ --threads 8</pre>
             <p><strong>Interview power line:</strong> "State-based CI testing catches breaking changes in seconds. dbt Cloud makes data pipelines as reliable as software deployments."</p>
 
             <p><strong>Senior gotcha:</strong> "Developers think 'dbt run' works locally, then fail in PR because of missing upstream data. Always test against prod database in CI."</p>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
-    <div class="question">
-        <div class="question-number">Question 74</div>
+    <div class="question" id="q74">
         <div class="question-title">dbt Pre-Hooks & Post-Hooks – Advanced Execution Control</div>
         <div class="answer">
             <p><strong>Pre-hooks and post-hooks execute arbitrary SQL before/after model runs. They're essential for setup, cleanup, and auditing in production pipelines.</strong></p>
@@ -5478,7 +5765,8 @@ select
 from {{ ref('stg_orders') }}
 where order_date >= '2025-01-01'</pre>
             <a href=\"#table-of-contents\" class=\"back-to-toc\">↑ Back to Contents</a>
-        </div>
+        <a href="#toc" class="back-to-toc">⬆ Back to Contents</a>
+</div>
     </div>
 
     </div>
