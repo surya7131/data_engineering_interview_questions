@@ -1,41 +1,54 @@
+
 body {
   margin: 0;
-  font-family: Segoe UI, sans-serif;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
   background: #f4f6f8;
+  color: #333;
 }
 
 header {
   background: #007acc;
-  color: white;
-  padding: 15px;
+  color: #fff;
+  padding: 16px;
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 
 header img {
-  width: 45px;
+  width: 48px;
 }
 
 .container {
   max-width: 1100px;
   margin: auto;
-  background: white;
+  background: #fff;
   padding: 30px;
 }
 
+h1 { margin: 0; }
+h2 { color: #0066cc; margin-top: 40px; }
+
 .question {
   border-left: 4px solid #007acc;
-  padding-left: 15px;
-  margin-bottom: 25px;
+  padding-left: 20px;
+  margin-bottom: 30px;
 }
 
 .question-title {
+  font-size: 1.2em;
   font-weight: 700;
   color: #8e44ad;
 }
 
+.answer {
+  margin-top: 10px;
+  line-height: 1.7;
+}
+
 footer {
+  background: #eef3f7;
   text-align: center;
   padding: 15px;
-  background: #eef3f7;
+  margin-top: 40px;
 }
