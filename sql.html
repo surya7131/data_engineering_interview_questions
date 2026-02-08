@@ -1,34 +1,973 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>SQL & Python Interview Questions</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<html><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Complete Snowflake &amp; Data Engineering Interview Guide - 74 Questions</title>
 
-<header>
-  <img src="logo.svg">
-  <h1>SQL & Python Interview Questions</h1>
-</header>
+</head><body><style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        
+        
+        header {
+            border-bottom: 3px solid #007acc;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #007acc;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
 
-<div class="container">
+        /* Table of Contents Styling */
+        .toc-container {
+            background-color: #f0f7ff;
+            border: 2px solid #007acc;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
 
-<div class="question" id="sql-q1">
-  <div class="question-title">Q1: Difference between CTE and Subquery</div>
-  <div class="answer">
-    CTE improves readability and can be reused within a query, while subqueries are nested and less readable.
-  </div>
+        .toc-container h2 {
+            color: #007acc;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 10px;
+        }
+
+        .toc-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .toc-section {
+            background-color: white;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .toc-section h3 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .toc-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-section li {
+            margin-bottom: 10px;
+        }
+
+        .toc-section a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .toc-section a:hover {
+            color: #007acc;
+            text-decoration: underline;
+        }
+
+        .toc-question-number {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .back-to-toc {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background-color: #007acc;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-toc:hover {
+            background-color: #0066cc;
+        }
+        
+        .question {
+            margin-bottom: 40px;
+            border-left: 4px solid #007acc;
+            padding-left: 20px;
+            scroll-margin-top: 100px;
+        }
+        
+        .question-number {
+            font-size: 1.1em;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .question-title {
+            font-size: 1.4em;
+            color: #2980b9;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+        
+        .answer {
+            margin-top: 15px;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        .answer p {
+            margin-bottom: 12px;
+        }
+        
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        strong {
+            color: #0066cc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-left: 3px solid #0066cc;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: #f9f9f9;
+        }
+        
+        table th {
+            background-color: #007acc;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+                page-break-after: avoid;
+            }
+            .question {
+                page-break-inside: avoid;
+            }
+            pre {
+                font-size: 8pt;
+                padding: 10px;
+            }
+            code {
+                font-size: 8pt;
+            }
+        }
+    
+html { scroll-behavior: smooth; }
+.question-title { color: #8e44ad !important; font-weight: 700; }
+
+/* ---------------- Responsive Enhancements ---------------- */
+
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+code {
+  word-break: break-word;
+}
+
+
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 1024px) {
+  
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  .question-title {
+    font-size: 1.15em;
+  }
+
+  .question {
+    padding-left: 15px;
+  }
+
+  .back-to-toc {
+    font-size: 0.8em;
+    padding: 6px 10px;
+  }
+}
+
+/* -------- TOC Layout Control -------- */
+.toc-container ul {
+  columns: 1;
+}
+
+@media (min-width: 1024px) {
+  .toc-container ul {
+    columns: 2;
+  }
+}
+.container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+</style><div class="container"><h1>Sql</h1><div class="question" id="q1">
+<div class="question-title">Write a query to get how much compute hours consumed overall and also how much compute hrs used for each day</div>
+<div class="answer">
+<p>This requires interpreting the start and end events to calculate the duration. Assuming Date_timestamp is a DATETIME or TIMESTAMP column.</p>
+<pre>WITH EventSequence AS (
+    SELECT
+        Date_timestamp,
+        progress,
+        LAG(Date_timestamp) OVER (ORDER BY Date_timestamp) AS Previous_Timestamp,
+        LAG(progress) OVER (ORDER BY Date_timestamp) AS Previous_Progress
+    FROM your_table_name
+),
+ComputeDurations AS (
+    SELECT
+        Date_timestamp,
+        progress,
+        Previous_Timestamp,
+        Previous_Progress,
+        CASE
+            WHEN progress = 'end' AND Previous_Progress = 'start'
+            THEN DATEDIFF(SECOND, Previous_Timestamp, Date_timestamp)
+            ELSE 0
+        END AS Duration_Seconds
+    FROM EventSequence
+    WHERE progress = 'end' AND Previous_Progress = 'start'
+)
+SELECT
+    SUM(Duration_Seconds) / 3600.0 AS Total_Compute_Hours_Overall,
+    TO_DATE(Date_timestamp) AS Compute_Date,
+    SUM(Duration_Seconds) / 3600.0 AS Daily_Compute_Hours
+FROM ComputeDurations
+GROUP BY TO_DATE(Date_timestamp)
+ORDER BY Compute_Date;</pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>EventSequence:</strong> This CTE assigns the Previous_Timestamp and Previous_Progress to each row</li>
+<li><strong>ComputeDurations:</strong> Calculates the Duration_Seconds only for valid end events preceded by a start event</li>
+<li><strong>Final SELECT:</strong> Sums durations to get Total and groups by date for Daily_Compute_Hours</li>
+</ul>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
 </div>
-
-<div class="question" id="sql-q2">
-  <div class="question-title">Q2: List vs Tuple in Python</div>
-  <div class="answer">
-    List is mutable, Tuple is immutable and faster for fixed data.
-  </div>
+</div><div class="question" id="q11">
+<div class="question-title">Stored Procedure</div>
+<div class="answer">
+<p>A Stored Procedure is a set of SQL statements and procedural logic compiled and stored in the database. It can be executed by calling its name with input parameters.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Encapsulation of complex logic</li>
+<li>Reusability - write once, run many times</li>
+<li>Parameterization - accepts input parameters</li>
+<li>Better performance - pre-compiled</li>
+<li>Enhanced security - grant permissions on procedure, not underlying tables</li>
+</ul>
+<pre>CREATE PROCEDURE calculate_daily_sales(sales_date DATE)
+RETURNS VARCHAR
+LANGUAGE SQL
+AS
+$$
+DECLARE
+    total_sales DECIMAL(18, 2);
+BEGIN
+    DELETE FROM DAILY_SALES_SUMMARY WHERE summary_date = :sales_date;
+    SELECT SUM(amount) INTO total_sales FROM RAW_SALES_DATA WHERE sale_date = :sales_date;
+    INSERT INTO DAILY_SALES_SUMMARY VALUES (:sales_date, :total_sales);
+    IF (total_sales IS NULL) THEN
+        RETURN 'No sales data found for ' || :sales_date;
+    ELSE
+        RETURN 'Successfully summarized for ' || :sales_date;
+    END IF;
+END;
+$$;</pre>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
 </div>
+</div><div class="question" id="q12">
+<div class="question-title">User Defined Functions (UDF)</div>
+<div class="answer">
+<p>A User Defined Function is a custom function that performs specific operations, similar to built-in functions. UDFs encapsulate logic that can be reused within SQL queries.</p>
+<p><strong>Types:</strong></p>
+<ul>
+<li>Scalar UDFs - return single value per input row</li>
+<li>Table UDFs (UDTFs) - return set of rows per input row</li>
+</ul>
+<p><strong>Scalar UDF Example:</strong></p>
+<pre>CREATE FUNCTION calculate_net_sales(sales_amount DECIMAL(10,2), return_amount DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+AS
+$$
+    sales_amount - COALESCE(return_amount, 0)
+$$;
 
+SELECT order_id, calculate_net_sales(sales_amount, return_amount) AS net_sales
+FROM daily_transactions;</pre>
+<p><strong>Languages Supported:</strong> SQL, JavaScript, Python, Java, Scala (via Snowpark)</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
 </div>
+</div><div class="question" id="q14">
+<div class="question-title">What is QUALIFY in Snowflake - Why it's used</div>
+<div class="answer">
+<p>QUALIFY is a clause unique to Snowflake that filters results of window functions without needing to wrap queries in subqueries or CTEs.</p>
+<p><strong>Example: Find the 2nd highest paid employee in each department</strong></p>
+<p><strong>With QUALIFY (Simpler):</strong></p>
+<pre>SELECT employee_id, employee_name, department, salary
+FROM employees
+QUALIFY RANK() OVER (PARTITION BY department ORDER BY salary DESC) = 2;</pre>
+<p><strong>Without QUALIFY (requires CTE):</strong></p>
+<pre>WITH EmployeeRank AS (
+    SELECT ..., RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rnk
+    FROM employees
+)
+SELECT * FROM EmployeeRank WHERE rnk = 2;</pre>
+<p><strong>Benefits:</strong> Simplicity, readability, potential performance improvements, direct filtering on window function results</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q19">
+<div class="question-title">Difference between CTE and Temp table - Where to use</div>
+<div class="answer">
+<p><strong>CTE (Common Table Expression) - WITH Clause:</strong> Temporary named result set defined within a single query. Often called "WITH clause" or subquery alternative</p>
+<pre>-- Multiple CTEs in one query
+WITH 
+-- CTE 1: Get top customers
+TopCustomers AS (
+    SELECT customer_id, SUM(order_amount) AS total_amount
+    FROM orders 
+    GROUP BY customer_id 
+    ORDER BY total_amount DESC 
+    LIMIT 100
+),
+-- CTE 2: Get their recent orders
+RecentOrders AS (
+    SELECT tc.customer_id, o.order_id, o.order_date, o.amount
+    FROM TopCustomers tc
+    JOIN orders o ON tc.customer_id = o.customer_id
+    WHERE o.order_date &gt;= CURRENT_DATE - 30
+)
+-- Main query uses CTEs
+SELECT customer_id, COUNT(*) as order_count, AVG(amount) as avg_amount
+FROM RecentOrders
+GROUP BY customer_id;</pre>
+<p><strong>Temp Table (TEMPORARY Table):</strong> Session-scoped table that persists in database until session ends. Can be used across multiple queries in same session</p>
+<pre>-- Create temp table that exists for this session
+CREATE TEMPORARY TABLE top_customers AS
+SELECT customer_id, SUM(order_amount) AS total_amount
+FROM orders 
+GROUP BY customer_id 
+ORDER BY total_amount DESC 
+LIMIT 100;
 
-<footer>© 2026 · Vemula Suryateja</footer>
-</body>
-</html>
+-- Use temp table in Query 1
+SELECT * FROM top_customers WHERE total_amount &gt; 10000;
+
+-- Use same temp table in Query 2
+SELECT tc.customer_id, COUNT(*) 
+FROM top_customers tc
+JOIN orders o ON tc.customer_id = o.customer_id
+GROUP BY tc.customer_id;
+
+-- Query 3 still has access to temp table
+INSERT INTO analytics_summary
+SELECT * FROM top_customers;
+
+-- Eventually session ends, temp table auto-drops</pre>
+<table>
+<tr>
+<th>Feature</th>
+<th>CTE (WITH)</th>
+<th>Temporary Table</th>
+</tr>
+<tr>
+<td>Scope</td>
+<td>Single query only</td>
+<td>Entire session</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>Logical, not stored</td>
+<td>Physical table in database</td>
+</tr>
+<tr>
+<td>Reusability</td>
+<td>Within same query</td>
+<td>Across multiple queries</td>
+</tr>
+<tr>
+<td>Materialization</td>
+<td>Optimizer decides (often inlined)</td>
+<td>Always materialized</td>
+</tr>
+<tr>
+<td>Storage Cost</td>
+<td>None</td>
+<td>Counts toward table storage</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Can be inlined (fast) or materialized</td>
+<td>Predictable, always fast for reads</td>
+</tr>
+<tr>
+<td>When to Use</td>
+<td>Breaking down complex queries, single-use logic</td>
+<td>Expensive operation reused many times in session</td>
+</tr>
+</table>
+<p><strong>When to Use CTEs:</strong></p>
+<ul>
+<li>Breaking down complex queries into readable parts</li>
+<li>Recursive queries (hierarchical data like org charts)</li>
+<li>Logical organization without needing storage</li>
+</ul>
+<p><strong>When to Use Temp Tables:</strong></p>
+<ul>
+<li>Expensive calculation reused multiple times in session</li>
+<li>Multi-step ETL processes in stored procedures</li>
+<li>Needing to add indexes or optimize for specific access patterns</li>
+</ul>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q28">
+<div class="question-title">Snowflake Tasks - Troubleshooting failed queries and performance improvement</div>
+<div class="answer">
+<p><strong>Snowflake Tasks:</strong> Execute SQL statements or call stored procedures on a recurring schedule or when conditions are met</p>
+<p><strong>Key Features:</strong> Scheduling (cron-like), DAG dependencies, conditional execution, error handling</p>
+<p><strong>Troubleshooting Failed/Slow Queries:</strong></p>
+<ol>
+<li><strong>Identify Problem:</strong> Query History in UI or ACCOUNT_USAGE.QUERY_HISTORY</li>
+<li><strong>Analyze Query Profile:</strong> Check execution phases, identify bottlenecks (scanning, joining, spilling)</li>
+<li><strong>Common Issues &amp; Solutions:</strong>
+<ul>
+<li>Spilling to disk → Increase warehouse size</li>
+<li>Poor pruning → Add clustering keys or improve WHERE clauses</li>
+<li>Inefficient joins → Rewrite query, change join order</li>
+<li>Expensive operations → Avoid SELECT *, DISTINCT, ORDER BY unless necessary</li>
+</ul>
+</li>
+<li><strong>Task-Specific:</strong> Check TASK_HISTORY for STATE and ERROR_MESSAGE, verify warehouse is available</li>
+</ol>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q34">
+<div class="question-title">How to optimize long running queries - How to reduce time</div>
+<div class="answer">
+<p><strong>Step 1: Analyze Query Profile (Mandatory)</strong></p>
+<ul>
+<li>Identify bottleneck operators (scanning, joining, aggregating, sorting)</li>
+<li>Check spilling to disk - indicates memory constraints</li>
+<li>Evaluate pruning efficiency</li>
+</ul>
+<p><strong>Step 2: Right-Size Virtual Warehouse</strong></p>
+<pre>-- Increase warehouse size if spilling or high queue time
+ALTER WAREHOUSE MY_WH SET WAREHOUSE_SIZE = 'LARGE';</pre>
+<p><strong>Step 3: Optimize SQL Logic</strong></p>
+<ul>
+<li>SELECT only necessary columns (avoid SELECT *)</li>
+<li>Filter early and effectively with WHERE clauses</li>
+<li>Optimize joins - proper join order, use INNER JOIN when possible</li>
+<li>Avoid correlated subqueries - use JOINs instead</li>
+<li>Eliminate unnecessary DISTINCT or ORDER BY</li>
+</ul>
+<p><strong>Step 4: Leverage Data Organization</strong></p>
+<ul>
+<li>Define clustering keys for very large tables</li>
+<li>Create materialized views for complex, frequently-run queries</li>
+</ul>
+<p><strong>Step 5: Leverage Caching</strong></p>
+<ul>
+<li>Encourage reuse of queries for result cache</li>
+<li>Keep warehouses running for warehouse cache benefits</li>
+</ul>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q36">
+<div class="question-title">Max Salary for each department and 4th max salary for each department</div>
+<div class="answer">
+<p><strong>Max Salary for Each Department:</strong></p>
+<pre>SELECT department, MAX(salary) AS max_salary_in_department
+FROM employees
+GROUP BY department
+ORDER BY department;</pre>
+<p><strong>4th Max Salary for Each Department:</strong></p>
+<pre>SELECT employee_id, department, salary
+FROM employees
+QUALIFY DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) = 4
+ORDER BY department, salary DESC;</pre>
+<p><strong>Using CTE (More Portable SQL):</strong></p>
+<pre>WITH RankedSalaries AS (
+    SELECT employee_id, department, salary,
+           DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) as salary_rank
+    FROM employees
+)
+SELECT employee_id, department, salary
+FROM RankedSalaries
+WHERE salary_rank = 4
+ORDER BY department;</pre>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q39">
+<div class="question-title">Difference between UPSERT and MERGE</div>
+<div class="answer">
+<p><strong>UPSERT:</strong> A conceptual operation - UPDATE if exists, INSERT if not</p>
+<p><strong>MERGE:</strong> Standard SQL statement (SQL:2003) that implements UPSERT</p>
+<p><strong>MERGE in Snowflake:</strong></p>
+<pre>MERGE INTO target_table AS T
+USING source_data AS S
+ON T.id = S.id
+WHEN MATCHED AND T.last_updated &lt; S.last_updated THEN
+    UPDATE SET T.name = S.name, T.email = S.email
+WHEN NOT MATCHED THEN
+    INSERT (id, name, email) VALUES (S.id, S.name, S.email);</pre>
+<p><strong>Example:</strong> Update customer 1's email, insert new customer 3</p>
+<pre>-- Before MERGE
+customers: (1, 'Alice', 'alice@old.com'), (2, 'Bob', 'bob@example.com')
+staging: (1, 'Alice', 'alice@new.com'), (3, 'Charlie', 'charlie@example.com')
+
+-- After MERGE
+customers: (1, 'Alice', 'alice@new.com'), (2, 'Bob', 'bob@example.com'), (3, 'Charlie', 'charlie@example.com')</pre>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q1">
+<div class="question-title">Write a query to get how much compute hours consumed overall and also how much compute hrs used for each day</div>
+<div class="answer">
+<p>This requires interpreting the start and end events to calculate the duration. Assuming Date_timestamp is a DATETIME or TIMESTAMP column.</p>
+<pre>WITH EventSequence AS (
+    SELECT
+        Date_timestamp,
+        progress,
+        LAG(Date_timestamp) OVER (ORDER BY Date_timestamp) AS Previous_Timestamp,
+        LAG(progress) OVER (ORDER BY Date_timestamp) AS Previous_Progress
+    FROM your_table_name
+),
+ComputeDurations AS (
+    SELECT
+        Date_timestamp,
+        progress,
+        Previous_Timestamp,
+        Previous_Progress,
+        CASE
+            WHEN progress = 'end' AND Previous_Progress = 'start'
+            THEN DATEDIFF(SECOND, Previous_Timestamp, Date_timestamp)
+            ELSE 0
+        END AS Duration_Seconds
+    FROM EventSequence
+    WHERE progress = 'end' AND Previous_Progress = 'start'
+)
+SELECT
+    SUM(Duration_Seconds) / 3600.0 AS Total_Compute_Hours_Overall,
+    TO_DATE(Date_timestamp) AS Compute_Date,
+    SUM(Duration_Seconds) / 3600.0 AS Daily_Compute_Hours
+FROM ComputeDurations
+GROUP BY TO_DATE(Date_timestamp)
+ORDER BY Compute_Date;</pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>EventSequence:</strong> This CTE assigns the Previous_Timestamp and Previous_Progress to each row</li>
+<li><strong>ComputeDurations:</strong> Calculates the Duration_Seconds only for valid end events preceded by a start event</li>
+<li><strong>Final SELECT:</strong> Sums durations to get Total and groups by date for Daily_Compute_Hours</li>
+</ul>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q11">
+<div class="question-title">Stored Procedure</div>
+<div class="answer">
+<p>A Stored Procedure is a set of SQL statements and procedural logic compiled and stored in the database. It can be executed by calling its name with input parameters.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Encapsulation of complex logic</li>
+<li>Reusability - write once, run many times</li>
+<li>Parameterization - accepts input parameters</li>
+<li>Better performance - pre-compiled</li>
+<li>Enhanced security - grant permissions on procedure, not underlying tables</li>
+</ul>
+<pre>CREATE PROCEDURE calculate_daily_sales(sales_date DATE)
+RETURNS VARCHAR
+LANGUAGE SQL
+AS
+$$
+DECLARE
+    total_sales DECIMAL(18, 2);
+BEGIN
+    DELETE FROM DAILY_SALES_SUMMARY WHERE summary_date = :sales_date;
+    SELECT SUM(amount) INTO total_sales FROM RAW_SALES_DATA WHERE sale_date = :sales_date;
+    INSERT INTO DAILY_SALES_SUMMARY VALUES (:sales_date, :total_sales);
+    IF (total_sales IS NULL) THEN
+        RETURN 'No sales data found for ' || :sales_date;
+    ELSE
+        RETURN 'Successfully summarized for ' || :sales_date;
+    END IF;
+END;
+$$;</pre>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q12">
+<div class="question-title">User Defined Functions (UDF)</div>
+<div class="answer">
+<p>A User Defined Function is a custom function that performs specific operations, similar to built-in functions. UDFs encapsulate logic that can be reused within SQL queries.</p>
+<p><strong>Types:</strong></p>
+<ul>
+<li>Scalar UDFs - return single value per input row</li>
+<li>Table UDFs (UDTFs) - return set of rows per input row</li>
+</ul>
+<p><strong>Scalar UDF Example:</strong></p>
+<pre>CREATE FUNCTION calculate_net_sales(sales_amount DECIMAL(10,2), return_amount DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+AS
+$$
+    sales_amount - COALESCE(return_amount, 0)
+$$;
+
+SELECT order_id, calculate_net_sales(sales_amount, return_amount) AS net_sales
+FROM daily_transactions;</pre>
+<p><strong>Languages Supported:</strong> SQL, JavaScript, Python, Java, Scala (via Snowpark)</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q14">
+<div class="question-title">What is QUALIFY in Snowflake - Why it's used</div>
+<div class="answer">
+<p>QUALIFY is a clause unique to Snowflake that filters results of window functions without needing to wrap queries in subqueries or CTEs.</p>
+<p><strong>Example: Find the 2nd highest paid employee in each department</strong></p>
+<p><strong>With QUALIFY (Simpler):</strong></p>
+<pre>SELECT employee_id, employee_name, department, salary
+FROM employees
+QUALIFY RANK() OVER (PARTITION BY department ORDER BY salary DESC) = 2;</pre>
+<p><strong>Without QUALIFY (requires CTE):</strong></p>
+<pre>WITH EmployeeRank AS (
+    SELECT ..., RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rnk
+    FROM employees
+)
+SELECT * FROM EmployeeRank WHERE rnk = 2;</pre>
+<p><strong>Benefits:</strong> Simplicity, readability, potential performance improvements, direct filtering on window function results</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q19">
+<div class="question-title">Difference between CTE and Temp table - Where to use</div>
+<div class="answer">
+<p><strong>CTE (Common Table Expression) - WITH Clause:</strong> Temporary named result set defined within a single query. Often called "WITH clause" or subquery alternative</p>
+<pre>-- Multiple CTEs in one query
+WITH 
+-- CTE 1: Get top customers
+TopCustomers AS (
+    SELECT customer_id, SUM(order_amount) AS total_amount
+    FROM orders 
+    GROUP BY customer_id 
+    ORDER BY total_amount DESC 
+    LIMIT 100
+),
+-- CTE 2: Get their recent orders
+RecentOrders AS (
+    SELECT tc.customer_id, o.order_id, o.order_date, o.amount
+    FROM TopCustomers tc
+    JOIN orders o ON tc.customer_id = o.customer_id
+    WHERE o.order_date &gt;= CURRENT_DATE - 30
+)
+-- Main query uses CTEs
+SELECT customer_id, COUNT(*) as order_count, AVG(amount) as avg_amount
+FROM RecentOrders
+GROUP BY customer_id;</pre>
+<p><strong>Temp Table (TEMPORARY Table):</strong> Session-scoped table that persists in database until session ends. Can be used across multiple queries in same session</p>
+<pre>-- Create temp table that exists for this session
+CREATE TEMPORARY TABLE top_customers AS
+SELECT customer_id, SUM(order_amount) AS total_amount
+FROM orders 
+GROUP BY customer_id 
+ORDER BY total_amount DESC 
+LIMIT 100;
+
+-- Use temp table in Query 1
+SELECT * FROM top_customers WHERE total_amount &gt; 10000;
+
+-- Use same temp table in Query 2
+SELECT tc.customer_id, COUNT(*) 
+FROM top_customers tc
+JOIN orders o ON tc.customer_id = o.customer_id
+GROUP BY tc.customer_id;
+
+-- Query 3 still has access to temp table
+INSERT INTO analytics_summary
+SELECT * FROM top_customers;
+
+-- Eventually session ends, temp table auto-drops</pre>
+<table>
+<tr>
+<th>Feature</th>
+<th>CTE (WITH)</th>
+<th>Temporary Table</th>
+</tr>
+<tr>
+<td>Scope</td>
+<td>Single query only</td>
+<td>Entire session</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>Logical, not stored</td>
+<td>Physical table in database</td>
+</tr>
+<tr>
+<td>Reusability</td>
+<td>Within same query</td>
+<td>Across multiple queries</td>
+</tr>
+<tr>
+<td>Materialization</td>
+<td>Optimizer decides (often inlined)</td>
+<td>Always materialized</td>
+</tr>
+<tr>
+<td>Storage Cost</td>
+<td>None</td>
+<td>Counts toward table storage</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Can be inlined (fast) or materialized</td>
+<td>Predictable, always fast for reads</td>
+</tr>
+<tr>
+<td>When to Use</td>
+<td>Breaking down complex queries, single-use logic</td>
+<td>Expensive operation reused many times in session</td>
+</tr>
+</table>
+<p><strong>When to Use CTEs:</strong></p>
+<ul>
+<li>Breaking down complex queries into readable parts</li>
+<li>Recursive queries (hierarchical data like org charts)</li>
+<li>Logical organization without needing storage</li>
+</ul>
+<p><strong>When to Use Temp Tables:</strong></p>
+<ul>
+<li>Expensive calculation reused multiple times in session</li>
+<li>Multi-step ETL processes in stored procedures</li>
+<li>Needing to add indexes or optimize for specific access patterns</li>
+</ul>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q28">
+<div class="question-title">Snowflake Tasks - Troubleshooting failed queries and performance improvement</div>
+<div class="answer">
+<p><strong>Snowflake Tasks:</strong> Execute SQL statements or call stored procedures on a recurring schedule or when conditions are met</p>
+<p><strong>Key Features:</strong> Scheduling (cron-like), DAG dependencies, conditional execution, error handling</p>
+<p><strong>Troubleshooting Failed/Slow Queries:</strong></p>
+<ol>
+<li><strong>Identify Problem:</strong> Query History in UI or ACCOUNT_USAGE.QUERY_HISTORY</li>
+<li><strong>Analyze Query Profile:</strong> Check execution phases, identify bottlenecks (scanning, joining, spilling)</li>
+<li><strong>Common Issues &amp; Solutions:</strong>
+<ul>
+<li>Spilling to disk → Increase warehouse size</li>
+<li>Poor pruning → Add clustering keys or improve WHERE clauses</li>
+<li>Inefficient joins → Rewrite query, change join order</li>
+<li>Expensive operations → Avoid SELECT *, DISTINCT, ORDER BY unless necessary</li>
+</ul>
+</li>
+<li><strong>Task-Specific:</strong> Check TASK_HISTORY for STATE and ERROR_MESSAGE, verify warehouse is available</li>
+</ol>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q34">
+<div class="question-title">How to optimize long running queries - How to reduce time</div>
+<div class="answer">
+<p><strong>Step 1: Analyze Query Profile (Mandatory)</strong></p>
+<ul>
+<li>Identify bottleneck operators (scanning, joining, aggregating, sorting)</li>
+<li>Check spilling to disk - indicates memory constraints</li>
+<li>Evaluate pruning efficiency</li>
+</ul>
+<p><strong>Step 2: Right-Size Virtual Warehouse</strong></p>
+<pre>-- Increase warehouse size if spilling or high queue time
+ALTER WAREHOUSE MY_WH SET WAREHOUSE_SIZE = 'LARGE';</pre>
+<p><strong>Step 3: Optimize SQL Logic</strong></p>
+<ul>
+<li>SELECT only necessary columns (avoid SELECT *)</li>
+<li>Filter early and effectively with WHERE clauses</li>
+<li>Optimize joins - proper join order, use INNER JOIN when possible</li>
+<li>Avoid correlated subqueries - use JOINs instead</li>
+<li>Eliminate unnecessary DISTINCT or ORDER BY</li>
+</ul>
+<p><strong>Step 4: Leverage Data Organization</strong></p>
+<ul>
+<li>Define clustering keys for very large tables</li>
+<li>Create materialized views for complex, frequently-run queries</li>
+</ul>
+<p><strong>Step 5: Leverage Caching</strong></p>
+<ul>
+<li>Encourage reuse of queries for result cache</li>
+<li>Keep warehouses running for warehouse cache benefits</li>
+</ul>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q36">
+<div class="question-title">Max Salary for each department and 4th max salary for each department</div>
+<div class="answer">
+<p><strong>Max Salary for Each Department:</strong></p>
+<pre>SELECT department, MAX(salary) AS max_salary_in_department
+FROM employees
+GROUP BY department
+ORDER BY department;</pre>
+<p><strong>4th Max Salary for Each Department:</strong></p>
+<pre>SELECT employee_id, department, salary
+FROM employees
+QUALIFY DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) = 4
+ORDER BY department, salary DESC;</pre>
+<p><strong>Using CTE (More Portable SQL):</strong></p>
+<pre>WITH RankedSalaries AS (
+    SELECT employee_id, department, salary,
+           DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) as salary_rank
+    FROM employees
+)
+SELECT employee_id, department, salary
+FROM RankedSalaries
+WHERE salary_rank = 4
+ORDER BY department;</pre>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q39">
+<div class="question-title">Difference between UPSERT and MERGE</div>
+<div class="answer">
+<p><strong>UPSERT:</strong> A conceptual operation - UPDATE if exists, INSERT if not</p>
+<p><strong>MERGE:</strong> Standard SQL statement (SQL:2003) that implements UPSERT</p>
+<p><strong>MERGE in Snowflake:</strong></p>
+<pre>MERGE INTO target_table AS T
+USING source_data AS S
+ON T.id = S.id
+WHEN MATCHED AND T.last_updated &lt; S.last_updated THEN
+    UPDATE SET T.name = S.name, T.email = S.email
+WHEN NOT MATCHED THEN
+    INSERT (id, name, email) VALUES (S.id, S.name, S.email);</pre>
+<p><strong>Example:</strong> Update customer 1's email, insert new customer 3</p>
+<pre>-- Before MERGE
+customers: (1, 'Alice', 'alice@old.com'), (2, 'Bob', 'bob@example.com')
+staging: (1, 'Alice', 'alice@new.com'), (3, 'Charlie', 'charlie@example.com')
+
+-- After MERGE
+customers: (1, 'Alice', 'alice@new.com'), (2, 'Bob', 'bob@example.com'), (3, 'Charlie', 'charlie@example.com')</pre>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q57">
+<div class="question-title">SQL Challenge – Orders and Payments</div>
+<div class="answer">
+<p><strong>Problem:</strong></p>
+<ul>
+<li>Orders table</li>
+<li>Payments table</li>
+<li>Partial payments allowed</li>
+<li>Identify orders <strong>not fully paid within 3 days of order date</strong></li>
+</ul>
+<p><strong>Solution (Snowflake SQL):</strong></p>
+<pre>WITH payments_3_days AS (
+    SELECT
+        o.order_id,
+        o.order_amount,
+        SUM(p.payment_amount) AS paid_amount
+    FROM orders o
+    LEFT JOIN payments p
+        ON o.order_id = p.order_id
+       AND p.payment_date &lt;= o.order_date + INTERVAL '3 DAY'
+    GROUP BY o.order_id, o.order_amount
+)
+SELECT *
+FROM payments_3_days
+WHERE COALESCE(paid_amount, 0) &lt; order_amount;</pre>
+<p><strong>Why this solution works:</strong></p>
+<ul>
+<li>Handles partial payments correctly</li>
+<li>Handles orders with no payments</li>
+<li>Encodes business logic, not just joins</li>
+</ul>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div></div></body></html>

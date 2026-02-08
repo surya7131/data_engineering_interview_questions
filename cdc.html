@@ -1,34 +1,902 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>CDC & Data Ingestion Interview Questions</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<html><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Complete Snowflake &amp; Data Engineering Interview Guide - 74 Questions</title>
 
-<header>
-  <img src="logo.svg">
-  <h1>CDC & Data Ingestion</h1>
-</header>
+</head><body><style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        
+        
+        header {
+            border-bottom: 3px solid #007acc;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #007acc;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
 
-<div class="container">
+        /* Table of Contents Styling */
+        .toc-container {
+            background-color: #f0f7ff;
+            border: 2px solid #007acc;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
 
-<div class="question" id="cdc-q1">
-  <div class="question-title">Q1: What is CDC?</div>
-  <div class="answer">
-    Change Data Capture identifies and captures INSERT, UPDATE, DELETE operations efficiently.
-  </div>
+        .toc-container h2 {
+            color: #007acc;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 10px;
+        }
+
+        .toc-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .toc-section {
+            background-color: white;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .toc-section h3 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .toc-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-section li {
+            margin-bottom: 10px;
+        }
+
+        .toc-section a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .toc-section a:hover {
+            color: #007acc;
+            text-decoration: underline;
+        }
+
+        .toc-question-number {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .back-to-toc {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background-color: #007acc;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-toc:hover {
+            background-color: #0066cc;
+        }
+        
+        .question {
+            margin-bottom: 40px;
+            border-left: 4px solid #007acc;
+            padding-left: 20px;
+            scroll-margin-top: 100px;
+        }
+        
+        .question-number {
+            font-size: 1.1em;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .question-title {
+            font-size: 1.4em;
+            color: #2980b9;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+        
+        .answer {
+            margin-top: 15px;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        .answer p {
+            margin-bottom: 12px;
+        }
+        
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        strong {
+            color: #0066cc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-left: 3px solid #0066cc;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: #f9f9f9;
+        }
+        
+        table th {
+            background-color: #007acc;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+                page-break-after: avoid;
+            }
+            .question {
+                page-break-inside: avoid;
+            }
+            pre {
+                font-size: 8pt;
+                padding: 10px;
+            }
+            code {
+                font-size: 8pt;
+            }
+        }
+    
+html { scroll-behavior: smooth; }
+.question-title { color: #8e44ad !important; font-weight: 700; }
+
+/* ---------------- Responsive Enhancements ---------------- */
+
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+code {
+  word-break: break-word;
+}
+
+
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 1024px) {
+  
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  .question-title {
+    font-size: 1.15em;
+  }
+
+  .question {
+    padding-left: 15px;
+  }
+
+  .back-to-toc {
+    font-size: 0.8em;
+    padding: 6px 10px;
+  }
+}
+
+/* -------- TOC Layout Control -------- */
+.toc-container ul {
+  columns: 1;
+}
+
+@media (min-width: 1024px) {
+  .toc-container ul {
+    columns: 2;
+  }
+}
+.container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+</style><div class="container"><h1>Cdc</h1><div class="question" id="q16">
+<div class="question-title">What is CDC (Change Data Capture) - Is it tool or term</div>
+<div class="answer">
+<p>CDC is primarily a <strong>term and technique</strong> (not a single tool). It identifies and captures changes (INSERT, UPDATE, DELETE) made to data in a source database and delivers those changes to a target system efficiently instead of reprocessing entire datasets.</p>
+<p><strong>Common Mechanisms:</strong></p>
+<ul>
+<li><strong>Timestamp-Based (Polling):</strong> Periodic queries find rows where last_updated_timestamp &gt; previous_check_time. Simple but can miss deletes, slow for large tables, unreliable if timestamps aren't consistent</li>
+<li><strong>Log-Based (Most Robust):</strong> Read database transaction logs (MySQL binlog, Oracle redo logs, SQL Server transaction log). Captures ALL changes in real-time, no impact on source DB, handles deletes</li>
+<li><strong>Trigger-Based:</strong> Database triggers fire on INSERT/UPDATE/DELETE, write change details to change table. Real-time but adds overhead to source system performance</li>
+<li><strong>Hash-Based:</strong> Calculate hash of row, compare snapshots to find differences. Works without source modifications but resource-intensive for large datasets</li>
+</ul>
+<p><strong>Why CDC Matters:</strong></p>
+<pre>-- Without CDC (Full Load Every Time) - INEFFICIENT
+COPY INTO warehouse_sales FROM source_db  -- 100GB table
+-- Takes 2 hours, processes entire table even if only 1GB changed
+-- Heavy impact on source system
+
+-- With CDC (Only Changes) - EFFICIENT
+COPY INTO warehouse_sales FROM change_stream  -- Only 1GB changed
+-- Takes 5 minutes, minimal source system impact
+-- Near real-time data availability</pre>
+<p><strong>Popular CDC Tools:</strong> Qlik Replicate (log-based), Fivetran (managed CDC), Debezium (Kafka-based open source), Oracle GoldenGate (enterprise), AWS DMS, Apache Hudi/Iceberg (data lake CDC)</p>
+<p><strong>Real Use Cases:</strong> Real-time analytics dashboards, microservices data synchronization, database migration with zero downtime, maintaining dimensional data in data warehouse</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
 </div>
-
-<div class="question" id="cdc-q2">
-  <div class="question-title">Q2: CDC in Snowflake</div>
-  <div class="answer">
-    Snowflake Streams track table changes and allow exactly-once processing.
-  </div>
+</div><div class="question" id="q18">
+<div class="question-title">AVRO, Parquet, ORC file formats - Uses</div>
+<div class="answer">
+<p><strong>AVRO (Apache Avro):</strong> Row-oriented data serialization format with self-describing schema</p>
+<ul>
+<li><strong>Schema Definition:</strong> Schema stored in JSON within each file (or managed externally via schema registry)</li>
+<li><strong>Excellent Schema Evolution:</strong> Can add/remove/modify fields with clear rules for backward/forward compatibility</li>
+<li><strong>Size:</strong> Compact binary format after serialization</li>
+<li><strong>Uses:</strong>
+<ul>
+<li>Real-time streaming with Apache Kafka (Confluent)</li>
+<li>Inter-process communication between services</li>
+<li>Data archival where schema changes occur over time</li>
+<li>CDC platforms like Debezium</li>
+</ul>
+</li>
+<li><strong>Limitations:</strong> Row-based format, less efficient for OLAP queries (must read many rows to get one column)</li>
+</ul>
+<p><strong>Parquet (Apache Parquet):</strong> Columnar storage format optimized for analytics</p>
+<ul>
+<li><strong>Column Storage:</strong> Data organized by column, not row. Reading one column doesn't require reading others</li>
+<li><strong>Compression:</strong> Column-level compression (RLE, dictionary encoding). Achieves 10x+ compression on repetitive columns</li>
+<li><strong>Query Performance:</strong> Queries scanning specific columns are 10-100x faster than row-oriented formats</li>
+<li><strong>Uses:</strong>
+<ul>
+<li>Data lakes (AWS S3, Azure ADLS) - primary format for analytics</li>
+<li>Spark DataFrames and Pandas - native support</li>
+<li>Snowflake, BigQuery, Redshift - optimized for Parquet</li>
+<li>Machine Learning datasets - efficient feature access</li>
+</ul>
+</li>
+<li><strong>Overhead:</strong> Largest metadata overhead, slower for row-by-row access but excellent for batch analytics</li>
+</ul>
+<p><strong>ORC (Optimized Row Columnar):</strong> Columnar format developed by Hortonworks for Hadoop ecosystem</p>
+<ul>
+<li><strong>Predicate Pushdown:</strong> Filtering applied during read from disk, not after. Scans only relevant stripes</li>
+<li><strong>Type Awareness:</strong> Understanding of data types enables better compression and optimizations</li>
+<li><strong>Uses:</strong>
+<ul>
+<li>Apache Hive (OLAP queries on Hadoop)</li>
+<li>Data warehousing on Hadoop clusters</li>
+<li>Spark SQL workloads in Hadoop ecosystems</li>
+</ul>
+</li>
+<li><strong>Comparison:</strong> ORC typically smaller than Parquet (better compression) but less ecosystem support outside Hadoop</li>
+</ul>
+<table>
+<tr>
+<th>Feature</th>
+<th>AVRO</th>
+<th>Parquet</th>
+<th>ORC</th>
+</tr>
+<tr>
+<td>Storage Type</td>
+<td>Row-oriented</td>
+<td>Columnar</td>
+<td>Columnar</td>
+</tr>
+<tr>
+<td>Schema Evolution</td>
+<td>Excellent (reader/writer schemas)</td>
+<td>Good (backward compatible)</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>Compression Ratio</td>
+<td>Moderate</td>
+<td>Very Good</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>Query Performance</td>
+<td>Good for full row reads</td>
+<td>Excellent for column subset</td>
+<td>Excellent for analytic queries</td>
+</tr>
+<tr>
+<td>Ecosystem Support</td>
+<td>Kafka, Pulsar, Streaming</td>
+<td>Universal (Cloud DWs, Spark)</td>
+<td>Hadoop/Hive focused</td>
+</tr>
+<tr>
+<td>Best For</td>
+<td>Event streaming, CDC</td>
+<td>Data lakes, analytics</td>
+<td>Hadoop, Hive queries</td>
+</tr>
+</table>
+<p><strong>Recommendation for Modern Data Stack:</strong> Use Parquet for data lakes (S3/ADLS); Use Avro for streaming pipelines and CDC; ORC if using Hadoop ecosystem</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
 </div>
+</div><div class="question" id="q20">
+<div class="question-title">Difference between Transient and Dynamic and Dynamic Transient tables</div>
+<div class="answer">
+<p><strong>TRANSIENT Table:</strong> Designed specifically for temporary data that doesn't require long-term protection</p>
+<ul>
+<li><strong>Time Travel:</strong> Default 0 days (configurable up to 1 day max) - cannot query historical versions</li>
+<li><strong>Fail-safe:</strong> None (no 7-day recovery window)</li>
+<li><strong>Storage Cost:</strong> Approximately 50% lower than permanent tables</li>
+<li><strong>Creation:</strong> CREATE TRANSIENT TABLE my_table (...);</li>
+<li><strong>Uses:</strong> Staging tables for daily loads, intermediate ETL results, temporary aggregations</li>
+</ul>
+<p><strong>Example Use Case:</strong></p>
+<pre>-- Daily staging table for raw data
+CREATE OR REPLACE TRANSIENT TABLE raw_daily_sales AS
+COPY INTO FROM @s3_stage/daily_sales/
+FILE_FORMAT = (TYPE = CSV);
 
+-- Transform and move to permanent table
+INSERT INTO fact_sales
+SELECT * FROM raw_daily_sales
+WHERE processing_complete = TRUE;
+
+-- raw_daily_sales can be safely dropped - data is in fact_sales</pre>
+<p><strong>Note:</strong> "Dynamic" and "Dynamic Transient" are not standard Snowflake table types. They may refer to:</p>
+<ul>
+<li><strong>Dynamic Data Loading:</strong> Frequently updated data with continuous CDC</li>
+<li><strong>Project-specific Naming:</strong> Custom conventions for different use cases</li>
+</ul>
+<p>In production, most tables are either <strong>Permanent</strong> (for analytics) or <strong>Transient</strong> (for staging). See Question 22 for Ephemeral/Temporary tables comparison.</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
 </div>
+</div><div class="question" id="q21">
+<div class="question-title">How you will handle schema changes in the downstream</div>
+<div class="answer">
+<p><strong>Strategies for Handling Schema Changes:</strong></p>
+<ol>
+<li><strong>Communication &amp; Collaboration:</strong> Establish data governance processes, cross-functional meetings, maintain documentation</li>
+<li><strong>Flexible Data Types:</strong> Use VARIANT columns for semi-structured data resilience to schema changes</li>
+<li><strong>Schema-on-Read:</strong> Apply schema at query time, not load time (data lakes with Parquet/ORC)</li>
+<li><strong>Additive Schema Changes (Preferred):</strong> Add new columns rather than renaming/deleting/changing types</li>
+<li><strong>Soft Deletes/Deprecation:</strong> Mark columns as deprecated before removal</li>
+<li><strong>Versioning Tables/Views:</strong> Create views over base tables to maintain consistent interface
+                        <pre>-- Original view
+CREATE VIEW v_customer AS SELECT customer_id, email FROM raw_customer;
 
-<footer>© 2026 · Vemula Suryateja</footer>
-</body>
-</html>
+-- Source table changes: 'email' becomes 'primary_contact_email'
+-- Update view to maintain compatibility
+CREATE VIEW v_customer AS SELECT customer_id, primary_contact_email AS email FROM raw_customer;</pre>
+</li>
+<li><strong>Data Contracts/Schema Registries:</strong> Define formal contracts using Avro/Protobuf</li>
+<li><strong>Impact Analysis &amp; Testing:</strong> Understand dependencies, test in dev/test before prod</li>
+<li><strong>Graceful Degradation:</strong> Implement logic that handles missing columns gracefully</li>
+</ol>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q23">
+<div class="question-title">How to implement CDC without ETL tools in Snowflake</div>
+<div class="answer">
+<p><strong>Strategy 1: Timestamp-Based CDC</strong></p>
+<pre>CREATE TABLE staging_data (
+    id INT, data VARCHAR, last_modified TIMESTAMP
+);
+
+MERGE INTO target_table AS t
+USING (SELECT * FROM staging_data WHERE last_modified &gt; :last_load_time) AS s
+ON t.id = s.id
+WHEN MATCHED THEN UPDATE SET t.data = s.data
+WHEN NOT MATCHED THEN INSERT VALUES (s.id, s.data);</pre>
+<p><strong>Strategy 2: Snowflake Streams (Recommended):</strong></p>
+<pre>CREATE STREAM my_stream ON TABLE source_table;
+
+-- Query stream - tracks inserts, updates, deletes
+SELECT * FROM my_stream;
+-- METADATA$ACTION shows 'INSERT' or 'DELETE'
+-- METADATA$ISUPDATE shows if row is part of UPDATE
+
+-- Consume changes atomically
+MERGE INTO target_table AS t
+USING my_stream AS s
+ON t.id = s.id
+WHEN MATCHED AND s.METADATA$ACTION='DELETE' THEN DELETE
+WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
+<p><strong>Benefits of Streams:</strong> Exactly-once processing, captures all DML, low performance impact</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q25">
+<div class="question-title">Why continuous data load used - Use cases</div>
+<div class="answer">
+<p>Continuous data loading moves data as soon as it becomes available, providing near real-time insights instead of batch windows.</p>
+<p><strong>Why Use It:</strong></p>
+<ul>
+<li>Near real-time analytics and operational dashboards</li>
+<li>Reduced data latency</li>
+<li>Improved responsiveness for decision-making</li>
+<li>Eliminates batch window constraints</li>
+<li>Distributes compute usage evenly over time</li>
+<li>Better data quality feedback loops</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>Operational Analytics:</strong> Real-time sales dashboards, metrics</li>
+<li><strong>Fraud Detection:</strong> Analyze transactions in real-time</li>
+<li><strong>IoT/Sensor Data:</strong> Monitor machine performance, predictive maintenance</li>
+<li><strong>Clickstream Analytics:</strong> Track user behavior, personalize experiences</li>
+<li><strong>Log Analysis:</strong> Security monitoring, error detection</li>
+<li><strong>Supply Chain:</strong> Real-time tracking and optimization</li>
+<li><strong>Customer 360:</strong> Build comprehensive customer views for personalization</li>
+</ul>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q27">
+<div class="question-title">Why implement CDC instead of other approaches - Use case</div>
+<div class="answer">
+<p><strong>Why CDC instead of full loads:</strong></p>
+<ul>
+<li><strong>Efficiency:</strong> Only changed data transferred/processed, reduces bandwidth and compute</li>
+<li><strong>Near Real-time:</strong> Data availability within minutes/seconds</li>
+<li><strong>Reduced Impact:</strong> Minimal strain on source systems (especially log-based CDC)</li>
+<li><strong>Captures Deletes:</strong> Unlike timestamp queries, robust CDC captures DELETE operations</li>
+<li><strong>Simplified Logic:</strong> Streams abstract away complexity of determining changes</li>
+</ul>
+<p><strong>Real-world Use Case: E-commerce Inventory Management</strong></p>
+<p>Problem without CDC: Nightly batch updates mean inventory is 12-24 hours old → customers order out-of-stock items, poor warehouse operations</p>
+<p>Solution with CDC: Stream changes from inventory DB into Snowflake using CDC → near real-time dashboards → website always knows actual stock levels → automated reordering → efficient logistics</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q35">
+<div class="question-title">What is Snowpipe - How to integrate using AWS S3, SNS, SQS, Task, Stored Proc</div>
+<div class="answer">
+<p>Snowpipe is Snowflake's continuous data ingestion service that loads data as soon as files appear in cloud storage.</p>
+<p><strong>AWS Integration Flow:</strong> S3 Event → SNS → SQS → Snowpipe → COPY INTO</p>
+<p><strong>Key Steps:</strong></p>
+<ol>
+<li><strong>AWS Setup:</strong> Create S3 bucket, SNS topic, SQS queue, IAM role with permissions</li>
+<li><strong>Snowflake Storage Integration:</strong></li>
+</ol>
+<pre>CREATE STORAGE INTEGRATION s3_pipe_integration
+  TYPE = EXTERNAL_STAGE
+  STORAGE_PROVIDER = 'S3'
+  STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::ACCOUNT:role/SnowflakeRole'
+  STORAGE_ALLOWED_LOCATIONS = ('s3://bucket/path/');</pre>
+<ol start="3">
+<li><strong>Create Stage:</strong></li>
+</ol>
+<pre>CREATE STAGE raw_stage
+  STORAGE_INTEGRATION = s3_pipe_integration
+  URL = 's3://bucket/path/'
+  FILE_FORMAT = (TYPE = CSV);</pre>
+<ol start="4">
+<li><strong>Create Target Table:</strong></li>
+</ol>
+<pre>CREATE TABLE raw_data (col1 INT, col2 VARCHAR, load_ts TIMESTAMP);</pre>
+<ol start="5">
+<li><strong>Create Snowpipe:</strong></li>
+</ol>
+<pre>CREATE PIPE raw_data_pipe
+  AUTO_INGEST = TRUE
+  AWS_SQS_QUEUE_ARN = 'arn:aws:sqs:region:account:queue'
+  AS
+  COPY INTO raw_data FROM @raw_stage;</pre>
+<ol start="6">
+<li><strong>Post-Load Processing (Optional):</strong></li>
+</ol>
+<pre>-- Create stream on target table
+CREATE STREAM raw_data_stream ON TABLE raw_data;
+
+-- Create stored proc for transformations
+CREATE PROCEDURE process_new_data()
+  AS $$ 
+    MERGE INTO fact_table AS t
+    USING raw_data_stream AS s ON t.id = s.id
+    WHEN NOT MATCHED THEN INSERT ...;
+  $$;
+
+-- Create task to run after data arrival
+CREATE TASK transform_task
+  WHEN SYSTEM$STREAM_HAS_DATA('raw_data_stream')
+  AS CALL process_new_data();</pre>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q16">
+<div class="question-title">What is CDC (Change Data Capture) - Is it tool or term</div>
+<div class="answer">
+<p>CDC is primarily a <strong>term and technique</strong> (not a single tool). It identifies and captures changes (INSERT, UPDATE, DELETE) made to data in a source database and delivers those changes to a target system efficiently instead of reprocessing entire datasets.</p>
+<p><strong>Common Mechanisms:</strong></p>
+<ul>
+<li><strong>Timestamp-Based (Polling):</strong> Periodic queries find rows where last_updated_timestamp &gt; previous_check_time. Simple but can miss deletes, slow for large tables, unreliable if timestamps aren't consistent</li>
+<li><strong>Log-Based (Most Robust):</strong> Read database transaction logs (MySQL binlog, Oracle redo logs, SQL Server transaction log). Captures ALL changes in real-time, no impact on source DB, handles deletes</li>
+<li><strong>Trigger-Based:</strong> Database triggers fire on INSERT/UPDATE/DELETE, write change details to change table. Real-time but adds overhead to source system performance</li>
+<li><strong>Hash-Based:</strong> Calculate hash of row, compare snapshots to find differences. Works without source modifications but resource-intensive for large datasets</li>
+</ul>
+<p><strong>Why CDC Matters:</strong></p>
+<pre>-- Without CDC (Full Load Every Time) - INEFFICIENT
+COPY INTO warehouse_sales FROM source_db  -- 100GB table
+-- Takes 2 hours, processes entire table even if only 1GB changed
+-- Heavy impact on source system
+
+-- With CDC (Only Changes) - EFFICIENT
+COPY INTO warehouse_sales FROM change_stream  -- Only 1GB changed
+-- Takes 5 minutes, minimal source system impact
+-- Near real-time data availability</pre>
+<p><strong>Popular CDC Tools:</strong> Qlik Replicate (log-based), Fivetran (managed CDC), Debezium (Kafka-based open source), Oracle GoldenGate (enterprise), AWS DMS, Apache Hudi/Iceberg (data lake CDC)</p>
+<p><strong>Real Use Cases:</strong> Real-time analytics dashboards, microservices data synchronization, database migration with zero downtime, maintaining dimensional data in data warehouse</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q18">
+<div class="question-title">AVRO, Parquet, ORC file formats - Uses</div>
+<div class="answer">
+<p><strong>AVRO (Apache Avro):</strong> Row-oriented data serialization format with self-describing schema</p>
+<ul>
+<li><strong>Schema Definition:</strong> Schema stored in JSON within each file (or managed externally via schema registry)</li>
+<li><strong>Excellent Schema Evolution:</strong> Can add/remove/modify fields with clear rules for backward/forward compatibility</li>
+<li><strong>Size:</strong> Compact binary format after serialization</li>
+<li><strong>Uses:</strong>
+<ul>
+<li>Real-time streaming with Apache Kafka (Confluent)</li>
+<li>Inter-process communication between services</li>
+<li>Data archival where schema changes occur over time</li>
+<li>CDC platforms like Debezium</li>
+</ul>
+</li>
+<li><strong>Limitations:</strong> Row-based format, less efficient for OLAP queries (must read many rows to get one column)</li>
+</ul>
+<p><strong>Parquet (Apache Parquet):</strong> Columnar storage format optimized for analytics</p>
+<ul>
+<li><strong>Column Storage:</strong> Data organized by column, not row. Reading one column doesn't require reading others</li>
+<li><strong>Compression:</strong> Column-level compression (RLE, dictionary encoding). Achieves 10x+ compression on repetitive columns</li>
+<li><strong>Query Performance:</strong> Queries scanning specific columns are 10-100x faster than row-oriented formats</li>
+<li><strong>Uses:</strong>
+<ul>
+<li>Data lakes (AWS S3, Azure ADLS) - primary format for analytics</li>
+<li>Spark DataFrames and Pandas - native support</li>
+<li>Snowflake, BigQuery, Redshift - optimized for Parquet</li>
+<li>Machine Learning datasets - efficient feature access</li>
+</ul>
+</li>
+<li><strong>Overhead:</strong> Largest metadata overhead, slower for row-by-row access but excellent for batch analytics</li>
+</ul>
+<p><strong>ORC (Optimized Row Columnar):</strong> Columnar format developed by Hortonworks for Hadoop ecosystem</p>
+<ul>
+<li><strong>Predicate Pushdown:</strong> Filtering applied during read from disk, not after. Scans only relevant stripes</li>
+<li><strong>Type Awareness:</strong> Understanding of data types enables better compression and optimizations</li>
+<li><strong>Uses:</strong>
+<ul>
+<li>Apache Hive (OLAP queries on Hadoop)</li>
+<li>Data warehousing on Hadoop clusters</li>
+<li>Spark SQL workloads in Hadoop ecosystems</li>
+</ul>
+</li>
+<li><strong>Comparison:</strong> ORC typically smaller than Parquet (better compression) but less ecosystem support outside Hadoop</li>
+</ul>
+<table>
+<tr>
+<th>Feature</th>
+<th>AVRO</th>
+<th>Parquet</th>
+<th>ORC</th>
+</tr>
+<tr>
+<td>Storage Type</td>
+<td>Row-oriented</td>
+<td>Columnar</td>
+<td>Columnar</td>
+</tr>
+<tr>
+<td>Schema Evolution</td>
+<td>Excellent (reader/writer schemas)</td>
+<td>Good (backward compatible)</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>Compression Ratio</td>
+<td>Moderate</td>
+<td>Very Good</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>Query Performance</td>
+<td>Good for full row reads</td>
+<td>Excellent for column subset</td>
+<td>Excellent for analytic queries</td>
+</tr>
+<tr>
+<td>Ecosystem Support</td>
+<td>Kafka, Pulsar, Streaming</td>
+<td>Universal (Cloud DWs, Spark)</td>
+<td>Hadoop/Hive focused</td>
+</tr>
+<tr>
+<td>Best For</td>
+<td>Event streaming, CDC</td>
+<td>Data lakes, analytics</td>
+<td>Hadoop, Hive queries</td>
+</tr>
+</table>
+<p><strong>Recommendation for Modern Data Stack:</strong> Use Parquet for data lakes (S3/ADLS); Use Avro for streaming pipelines and CDC; ORC if using Hadoop ecosystem</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q20">
+<div class="question-title">Difference between Transient and Dynamic and Dynamic Transient tables</div>
+<div class="answer">
+<p><strong>TRANSIENT Table:</strong> Designed specifically for temporary data that doesn't require long-term protection</p>
+<ul>
+<li><strong>Time Travel:</strong> Default 0 days (configurable up to 1 day max) - cannot query historical versions</li>
+<li><strong>Fail-safe:</strong> None (no 7-day recovery window)</li>
+<li><strong>Storage Cost:</strong> Approximately 50% lower than permanent tables</li>
+<li><strong>Creation:</strong> CREATE TRANSIENT TABLE my_table (...);</li>
+<li><strong>Uses:</strong> Staging tables for daily loads, intermediate ETL results, temporary aggregations</li>
+</ul>
+<p><strong>Example Use Case:</strong></p>
+<pre>-- Daily staging table for raw data
+CREATE OR REPLACE TRANSIENT TABLE raw_daily_sales AS
+COPY INTO FROM @s3_stage/daily_sales/
+FILE_FORMAT = (TYPE = CSV);
+
+-- Transform and move to permanent table
+INSERT INTO fact_sales
+SELECT * FROM raw_daily_sales
+WHERE processing_complete = TRUE;
+
+-- raw_daily_sales can be safely dropped - data is in fact_sales</pre>
+<p><strong>Note:</strong> "Dynamic" and "Dynamic Transient" are not standard Snowflake table types. They may refer to:</p>
+<ul>
+<li><strong>Dynamic Data Loading:</strong> Frequently updated data with continuous CDC</li>
+<li><strong>Project-specific Naming:</strong> Custom conventions for different use cases</li>
+</ul>
+<p>In production, most tables are either <strong>Permanent</strong> (for analytics) or <strong>Transient</strong> (for staging). See Question 22 for Ephemeral/Temporary tables comparison.</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q21">
+<div class="question-title">How you will handle schema changes in the downstream</div>
+<div class="answer">
+<p><strong>Strategies for Handling Schema Changes:</strong></p>
+<ol>
+<li><strong>Communication &amp; Collaboration:</strong> Establish data governance processes, cross-functional meetings, maintain documentation</li>
+<li><strong>Flexible Data Types:</strong> Use VARIANT columns for semi-structured data resilience to schema changes</li>
+<li><strong>Schema-on-Read:</strong> Apply schema at query time, not load time (data lakes with Parquet/ORC)</li>
+<li><strong>Additive Schema Changes (Preferred):</strong> Add new columns rather than renaming/deleting/changing types</li>
+<li><strong>Soft Deletes/Deprecation:</strong> Mark columns as deprecated before removal</li>
+<li><strong>Versioning Tables/Views:</strong> Create views over base tables to maintain consistent interface
+                        <pre>-- Original view
+CREATE VIEW v_customer AS SELECT customer_id, email FROM raw_customer;
+
+-- Source table changes: 'email' becomes 'primary_contact_email'
+-- Update view to maintain compatibility
+CREATE VIEW v_customer AS SELECT customer_id, primary_contact_email AS email FROM raw_customer;</pre>
+</li>
+<li><strong>Data Contracts/Schema Registries:</strong> Define formal contracts using Avro/Protobuf</li>
+<li><strong>Impact Analysis &amp; Testing:</strong> Understand dependencies, test in dev/test before prod</li>
+<li><strong>Graceful Degradation:</strong> Implement logic that handles missing columns gracefully</li>
+</ol>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q23">
+<div class="question-title">How to implement CDC without ETL tools in Snowflake</div>
+<div class="answer">
+<p><strong>Strategy 1: Timestamp-Based CDC</strong></p>
+<pre>CREATE TABLE staging_data (
+    id INT, data VARCHAR, last_modified TIMESTAMP
+);
+
+MERGE INTO target_table AS t
+USING (SELECT * FROM staging_data WHERE last_modified &gt; :last_load_time) AS s
+ON t.id = s.id
+WHEN MATCHED THEN UPDATE SET t.data = s.data
+WHEN NOT MATCHED THEN INSERT VALUES (s.id, s.data);</pre>
+<p><strong>Strategy 2: Snowflake Streams (Recommended):</strong></p>
+<pre>CREATE STREAM my_stream ON TABLE source_table;
+
+-- Query stream - tracks inserts, updates, deletes
+SELECT * FROM my_stream;
+-- METADATA$ACTION shows 'INSERT' or 'DELETE'
+-- METADATA$ISUPDATE shows if row is part of UPDATE
+
+-- Consume changes atomically
+MERGE INTO target_table AS t
+USING my_stream AS s
+ON t.id = s.id
+WHEN MATCHED AND s.METADATA$ACTION='DELETE' THEN DELETE
+WHEN NOT MATCHED AND s.METADATA$ACTION='INSERT' THEN INSERT ...;</pre>
+<p><strong>Benefits of Streams:</strong> Exactly-once processing, captures all DML, low performance impact</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q25">
+<div class="question-title">Why continuous data load used - Use cases</div>
+<div class="answer">
+<p>Continuous data loading moves data as soon as it becomes available, providing near real-time insights instead of batch windows.</p>
+<p><strong>Why Use It:</strong></p>
+<ul>
+<li>Near real-time analytics and operational dashboards</li>
+<li>Reduced data latency</li>
+<li>Improved responsiveness for decision-making</li>
+<li>Eliminates batch window constraints</li>
+<li>Distributes compute usage evenly over time</li>
+<li>Better data quality feedback loops</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>Operational Analytics:</strong> Real-time sales dashboards, metrics</li>
+<li><strong>Fraud Detection:</strong> Analyze transactions in real-time</li>
+<li><strong>IoT/Sensor Data:</strong> Monitor machine performance, predictive maintenance</li>
+<li><strong>Clickstream Analytics:</strong> Track user behavior, personalize experiences</li>
+<li><strong>Log Analysis:</strong> Security monitoring, error detection</li>
+<li><strong>Supply Chain:</strong> Real-time tracking and optimization</li>
+<li><strong>Customer 360:</strong> Build comprehensive customer views for personalization</li>
+</ul>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q27">
+<div class="question-title">Why implement CDC instead of other approaches - Use case</div>
+<div class="answer">
+<p><strong>Why CDC instead of full loads:</strong></p>
+<ul>
+<li><strong>Efficiency:</strong> Only changed data transferred/processed, reduces bandwidth and compute</li>
+<li><strong>Near Real-time:</strong> Data availability within minutes/seconds</li>
+<li><strong>Reduced Impact:</strong> Minimal strain on source systems (especially log-based CDC)</li>
+<li><strong>Captures Deletes:</strong> Unlike timestamp queries, robust CDC captures DELETE operations</li>
+<li><strong>Simplified Logic:</strong> Streams abstract away complexity of determining changes</li>
+</ul>
+<p><strong>Real-world Use Case: E-commerce Inventory Management</strong></p>
+<p>Problem without CDC: Nightly batch updates mean inventory is 12-24 hours old → customers order out-of-stock items, poor warehouse operations</p>
+<p>Solution with CDC: Stream changes from inventory DB into Snowflake using CDC → near real-time dashboards → website always knows actual stock levels → automated reordering → efficient logistics</p>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div><div class="question" id="q35">
+<div class="question-title">What is Snowpipe - How to integrate using AWS S3, SNS, SQS, Task, Stored Proc</div>
+<div class="answer">
+<p>Snowpipe is Snowflake's continuous data ingestion service that loads data as soon as files appear in cloud storage.</p>
+<p><strong>AWS Integration Flow:</strong> S3 Event → SNS → SQS → Snowpipe → COPY INTO</p>
+<p><strong>Key Steps:</strong></p>
+<ol>
+<li><strong>AWS Setup:</strong> Create S3 bucket, SNS topic, SQS queue, IAM role with permissions</li>
+<li><strong>Snowflake Storage Integration:</strong></li>
+</ol>
+<pre>CREATE STORAGE INTEGRATION s3_pipe_integration
+  TYPE = EXTERNAL_STAGE
+  STORAGE_PROVIDER = 'S3'
+  STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::ACCOUNT:role/SnowflakeRole'
+  STORAGE_ALLOWED_LOCATIONS = ('s3://bucket/path/');</pre>
+<ol start="3">
+<li><strong>Create Stage:</strong></li>
+</ol>
+<pre>CREATE STAGE raw_stage
+  STORAGE_INTEGRATION = s3_pipe_integration
+  URL = 's3://bucket/path/'
+  FILE_FORMAT = (TYPE = CSV);</pre>
+<ol start="4">
+<li><strong>Create Target Table:</strong></li>
+</ol>
+<pre>CREATE TABLE raw_data (col1 INT, col2 VARCHAR, load_ts TIMESTAMP);</pre>
+<ol start="5">
+<li><strong>Create Snowpipe:</strong></li>
+</ol>
+<pre>CREATE PIPE raw_data_pipe
+  AUTO_INGEST = TRUE
+  AWS_SQS_QUEUE_ARN = 'arn:aws:sqs:region:account:queue'
+  AS
+  COPY INTO raw_data FROM @raw_stage;</pre>
+<ol start="6">
+<li><strong>Post-Load Processing (Optional):</strong></li>
+</ol>
+<pre>-- Create stream on target table
+CREATE STREAM raw_data_stream ON TABLE raw_data;
+
+-- Create stored proc for transformations
+CREATE PROCEDURE process_new_data()
+  AS $$ 
+    MERGE INTO fact_table AS t
+    USING raw_data_stream AS s ON t.id = s.id
+    WHEN NOT MATCHED THEN INSERT ...;
+  $$;
+
+-- Create task to run after data arrival
+CREATE TASK transform_task
+  WHEN SYSTEM$STREAM_HAS_DATA('raw_data_stream')
+  AS CALL process_new_data();</pre>
+<a class="back-to-toc" href="#toc">⬆ Back to Contents</a>
+</div>
+</div></div></body></html>
