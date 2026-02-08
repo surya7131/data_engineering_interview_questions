@@ -89,3 +89,55 @@ https://<your-username>.github.io/<your-repo-name>/
 
 ## 📄 Project Structure
 
+---
+
+## 🚀 How to Use This Guide
+
+- 📖 Read topic-by-topic for interview prep
+- 🔍 Jump directly to questions using the Contents
+- 🧠 Revise before interviews
+- 📤 Share as a single link with recruiters or peers
+
+---
+
+## 🛠️ How It’s Built
+
+- Pure HTML + CSS
+- No frameworks
+- Lightweight & fast
+- Can be hosted on:
+  - GitHub Pages
+  - Netlify
+  - AWS S3 (static site)
+
+---
+
+## 🧩 Future Enhancements (Optional)
+
+- 🔍 Search bar for questions
+- 🌙 Dark mode
+- 📘 Topic-wise collapsible contents
+- 📄 PDF export version
+
+---
+
+## 📬 Feedback & Contributions
+
+If you find improvements, missing topics, or want to extend this guide:
+- Open an issue
+- Fork and improve
+- Share feedback
+
+---
+
+## ⭐ If This Helped You
+
+Consider:
+- Starring the repository ⭐
+- Sharing with fellow data engineers
+- Using it as your personal interview prep handbook
+
+---
+
+**Happy learning & best of luck with your interviews! 🚀**
+
