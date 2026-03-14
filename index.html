@@ -531,6 +531,62 @@
             transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
         }
 
+        /* ── EXPAND / COLLAPSE ALL BAR ── */
+        .questions-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            gap: 12px;
+        }
+
+        .questions-toolbar-label {
+            font-family: var(--mono);
+            font-size: 0.7em;
+            color: var(--text3);
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        .expand-all-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 16px;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            border-radius: 7px;
+            color: var(--text2);
+            font-family: var(--mono);
+            font-size: 0.72em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+            white-space: nowrap;
+            letter-spacing: 0.04em;
+            user-select: none;
+        }
+
+        .expand-all-btn:hover {
+            background: var(--accent-glow);
+            border-color: var(--accent);
+            color: var(--accent2);
+        }
+
+        .expand-all-btn .btn-icon {
+            font-size: 1.1em;
+            line-height: 1;
+            transition: transform 0.25s ease;
+        }
+
+        .expand-all-btn.all-collapsed .btn-icon {
+            transform: rotate(-90deg);
+        }
+
         /* ── QUESTIONS ── */
         .question {
             margin-bottom: 40px;
@@ -1077,6 +1133,15 @@
                 </div>
             </div>
                 <!-- Questions Start -->
+
+        <!-- Expand / Collapse All toolbar -->
+        <div class="questions-toolbar">
+            <span class="questions-toolbar-label" id="toolbar-status">70 questions</span>
+            <button class="expand-all-btn" id="expandAllBtn" onclick="toggleAllQuestions()">
+                <span class="btn-icon">&#9662;</span>
+                <span class="btn-label">Collapse All</span>
+            </button>
+        </div>
 
         <div class="question" id="q1">
             <div class="question-header">
@@ -7671,8 +7736,59 @@ Business decisions (the whole point)</pre>
         document.querySelectorAll('.question-header').forEach(header => {
             header.addEventListener('click', () => {
                 header.closest('.question').classList.toggle('collapsed');
+                updateToolbarState();
             });
         });
+
+        // ── EXPAND / COLLAPSE ALL ──
+        function toggleAllQuestions() {
+            const btn        = document.getElementById('expandAllBtn');
+            const questions  = document.querySelectorAll('.question');
+            const collapsed  = document.querySelectorAll('.question.collapsed');
+            const allCollapsed = collapsed.length === questions.length;
+
+            questions.forEach(q => {
+                if (allCollapsed) {
+                    q.classList.remove('collapsed');   // expand all
+                } else {
+                    q.classList.add('collapsed');       // collapse all
+                }
+            });
+            updateToolbarState();
+        }
+
+        function updateToolbarState() {
+            const btn        = document.getElementById('expandAllBtn');
+            const label      = btn.querySelector('.btn-label');
+            const questions  = document.querySelectorAll('.question');
+            const collapsed  = document.querySelectorAll('.question.collapsed');
+            const total      = questions.length;
+            const nCollapsed = collapsed.length;
+
+            if (nCollapsed === total) {
+                // All collapsed → show "Expand All"
+                btn.classList.add('all-collapsed');
+                label.textContent = 'Expand All';
+            } else {
+                // Some or all expanded → show "Collapse All"
+                btn.classList.remove('all-collapsed');
+                label.textContent = 'Collapse All';
+            }
+
+            const statusEl = document.getElementById('toolbar-status');
+            if (statusEl) {
+                if (nCollapsed === 0) {
+                    statusEl.textContent = total + ' questions — all expanded';
+                } else if (nCollapsed === total) {
+                    statusEl.textContent = total + ' questions — all collapsed';
+                } else {
+                    statusEl.textContent = (total - nCollapsed) + ' / ' + total + ' expanded';
+                }
+            }
+        }
+
+        // Init toolbar state on load
+        updateToolbarState();
 
         // ── THEME TOGGLE ──
         function toggleTheme() {
