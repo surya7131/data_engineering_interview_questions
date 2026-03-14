@@ -144,6 +144,15 @@
             text-decoration: underline;
         }
 
+        .attr-bar-text strong a {
+            color: var(--accent2);
+        }
+
+        .attr-bar-text strong a:hover {
+            color: var(--text);
+            text-decoration: underline;
+        }
+
         /* ── TOP HEADER ── */
         .top-bar {
             position: fixed;
@@ -1017,7 +1026,7 @@
     <!-- ATTRIBUTION BAR -->
     <div class="attr-bar">
         <span class="attr-bar-text">
-            &#128203; Maintained by &nbsp;<strong>Vemula Suryateja</strong>
+            &#128203; Maintained by &nbsp;<strong><a href="https://www.linkedin.com/in/vemula-suryateja/" target="_blank" rel="noopener noreferrer">Vemula Suryateja</a></strong>
         </span>
         <div class="attr-bar-divider"></div>
         <span class="attr-bar-text">
@@ -1050,7 +1059,7 @@
         </div>
         <div class="top-bar-meta">
             <div class="progress-pill">
-                <span id="progress-label">0 / 50 viewed</span>
+                <span id="progress-label">0 / 0 viewed</span>
                 <div class="progress-bar-mini">
                     <div class="progress-bar-mini-fill" id="progress-fill"></div>
                 </div>
@@ -7853,6 +7862,15 @@ Business decisions (the whole point)</pre>
 
         // Init toolbar state on load
         updateToolbarState();
+
+        // ── INIT PROGRESS LABELS with correct total on first paint ──
+        (function initProgress() {
+            const totalQ = document.querySelectorAll('.sidebar-item[data-q]').length;
+            const topLabel   = document.getElementById('progress-label');
+            const heroLabel  = document.getElementById('hero-prog-label');
+            if (topLabel)  topLabel.textContent  = '0 / ' + totalQ + ' viewed';
+            if (heroLabel) heroLabel.textContent = '0 / ' + totalQ + ' viewed';
+        })();
 
         // ── THEME TOGGLE ──
         function toggleTheme() {
